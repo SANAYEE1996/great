@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script th:inline = "javascript">
+    let list = /*[[${list}]]*/'default';
+    let url;
+    let id;
+    let i = 0;
+
+</script>
+<body>
+<h1>
+    실시간 검색 결과 페이지..
+</h1>
+<div>
+    <h3>검색어를 입력해주세요</h3>
+</div>
+<br>
+<form action="/search" method="POST" border="1">
+    <input type="text" name = "keyword" placeholder="" style="width:200px;height:30px;font-size:20px;">
+    <br>
+    <br>
+    <input TYPE="IMAGE" src="https://i.ibb.co/pPxMtZj/recommendation-Button.png"
+           name="submit" value="submit">
+</form>
+
+<span th:text = "${keyword}"></span>
+
+<table border="1">
+    <tr>
+        <th> 타이틀 </th>
+        <th></th>
+        <th> 링크 </th>
+        <th></th>
+        <th> 본문 </th>
+        <th></th>
+        <th> 빈도 수 </th>
+    </tr>
+    <tr th:each = "list , i : ${list}">
+        <td> <span th:text = "${list.title}"></span> </td>
+        <td></td>
+        <td> <a th:id = "${i.index}" href = ""><span th:text = "${list.link}"> </span> </a></td>
+        <script>
+                id = '#';
+                id = id + i;
+                url = list[i].link;
+                $(id).attr('href',url);
+                i = i+1;
+            </script>
+        <td></td>
+        <td> <span th:text = "${list.text}"></span> </td>
+        <td></td>
+        <td> <span th:text = "${list.freq}"></span> </td>
+    </tr>
+</table>
+</body>
+</html>
