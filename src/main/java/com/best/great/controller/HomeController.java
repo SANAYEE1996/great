@@ -3,6 +3,7 @@ package com.best.great.controller;
 
 import com.best.great.entity.SearchResult;
 import com.best.great.service.Crawling;
+import com.best.great.service.HomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 public class HomeController {
 
     @Autowired
-
+    HomeService homeService;
 
     @GetMapping(value = "/join")
     public String join(Model models) {
