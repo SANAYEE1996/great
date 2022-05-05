@@ -25,7 +25,7 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-*.properties
+
 
 
 ### NetBeans ###
@@ -37,3 +37,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+#####properties#####
+**/properties
