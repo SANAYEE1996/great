@@ -1,11 +1,15 @@
 package com.best.great.repository;
 
-import com.best.great.entity.Test;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.best.great.entity.TestTable;
 
-public interface TestRepository extends JpaRepository<Test, String> {
+import java.util.List;
+import java.util.Optional;
 
+public interface TestRepository{
 
+    TestTable save(TestTable test);
+    Optional<TestTable> findById(Long id);
+    List<TestTable> findAll();
 
 
 
