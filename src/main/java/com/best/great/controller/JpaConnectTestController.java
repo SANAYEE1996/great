@@ -18,6 +18,7 @@ public class JpaConnectTestController {
     public String findAll() {
         String result = "";
 
+
         for (Test_Member member : repository.findAll()) {
             result += member.toString() + "</br>";
         }
@@ -56,7 +57,8 @@ public class JpaConnectTestController {
     }
 
     @GetMapping ("/update")
-    public String updateMember(@RequestParam("id") long id, @RequestParam("firstname") String firstName, @RequestParam("lastname") String lastName, @RequestParam("email") String email) {
+    public String updateMember(@RequestParam("id") long id, @RequestParam("firstname") String firstName,
+                               @RequestParam("lastname") String lastName, @RequestParam("email") String email) {
 
         Test_Member member = repository.findById(id).get(0);
 
