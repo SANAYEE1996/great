@@ -6,7 +6,7 @@ platform - intelliJ
 
 
 
-framework - Spring, Spring boot
+framework - Spring
 
 
 
