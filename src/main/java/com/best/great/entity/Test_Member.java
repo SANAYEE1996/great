@@ -2,16 +2,12 @@ package com.best.great.entity;
 
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "members")
 @Data
-@Getter
-@Setter
 public class Test_Member {
 
     @Id
