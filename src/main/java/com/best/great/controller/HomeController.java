@@ -20,6 +20,17 @@ public class HomeController {
     @Autowired
     HomeService homeService;
 
+    @GetMapping(value = "/login")
+    public String login(){
+        return "login.html";
+    }
+
+    @RequestMapping(value = "/home", method = RequestMethod.POST)
+    public String home(){
+
+        return "home.html";
+    }
+
     @GetMapping(value = "/join")
     public String join(Model models) {
         System.out.println("회원 가입 화면");

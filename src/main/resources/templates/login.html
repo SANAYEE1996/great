@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #loginGO{
+        background-repeat: no-repeat;
+        width: 166px;
+        height: 90px;
+        border: 0px;
+        cursor:pointer;
+        outline: 0;
+    }
+</style>
+<body>
+
+    <FORM action="/home" method="post">
+        <tr>
+            <td align=left valign=bottom>ID :</td>
+            <td align=left valign=bottom>
+                <input type = "text" name = "id" placeholder="아이디"/>
+            </td>
+
+        </tr>
+        <tr>
+            <td align=left valign=top>PW :</td>
+            <td align=left valign=top>
+                <input type = "password" name = "pw" placeholder="비밀번호"/>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2"> <input type="submit" id = "loginGO" value=""> </td>
+        </tr>
+    </FORM>
+    <br>
+    <a href ="/join">처음 오셨나요 ? 회원가입</a>
+
+</body>
+</html>
