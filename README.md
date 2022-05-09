@@ -3,7 +3,19 @@
 
 
 platform - intelliJ
+
+
+
 framework - Spring, Spring boot
+
+
+
 build tools - gradle
+
+
+
 DB - mariaDB
+
+
+
 DB Connection - jpa
