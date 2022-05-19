@@ -19,3 +19,6 @@ DB - mariaDB
 
 
 DB Connection - jpa
+
+
+spring security
