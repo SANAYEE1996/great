@@ -15,25 +15,17 @@
     }
 </style>
 <body>
-
-    <FORM action="/home" method="post">
-        <tr>
-            <td align=left valign=bottom>ID :</td>
-            <td align=left valign=bottom>
-                <input type = "text" name = "id" placeholder="아이디"/>
-            </td>
-
-        </tr>
-        <tr>
-            <td align=left valign=top>PW :</td>
-            <td align=left valign=top>
-                <input type = "password" name = "pw" placeholder="비밀번호"/>
-            </td>
-        </tr>
-        <tr>
-            <td rowspan="2"> <input type="submit" id = "loginGO" value=""> </td>
-        </tr>
-    </FORM>
+    <div th:if="${param.error}">
+        Invalid username and password.
+    </div>
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
+    <form th:action="@{/loginAccess}" method="post">
+        <div><label> User Name : <input type="text" name="username"/> </label></div>
+        <div><label> Password: <input type="password" name="password"/> </label></div>
+        <div><input type="submit" value="Sign In"/></div>
+    </form>
     <br>
     <a href ="/join">처음 오셨나요 ? 회원가입</a>
 
