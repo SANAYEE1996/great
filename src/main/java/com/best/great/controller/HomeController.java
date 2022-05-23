@@ -20,11 +20,6 @@ public class HomeController {
     @Autowired
     HomeService homeService;
 
-    @GetMapping(value = "/login")
-    public String login(){
-        return "login.html";
-    }
-
     @RequestMapping(value = "/home", method = RequestMethod.POST)
     public String home(){
 
