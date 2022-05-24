@@ -6,12 +6,12 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name = "role")
 @Data
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
 

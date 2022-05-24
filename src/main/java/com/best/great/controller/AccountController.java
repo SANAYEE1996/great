@@ -21,11 +21,18 @@ public class AccountController {
         return "account/login.html";
     }
 
+    @GetMapping("/register")
+    public String register(){
+
+        return "account/register.html";
+    }
+
     @PostMapping(value = "/register")
     public String register(User user){
-
+        System.out.println(user.getUsername());
+        System.out.println(user.getPassword());
         userService.save(user);
-        return "account/login.html";
+        return "redirect:/";
     }
 
 }
