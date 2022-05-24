@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Search Page</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script th:inline = "javascript">
@@ -20,7 +20,7 @@
     <h3>검색어를 입력해주세요</h3>
 </div>
 <br>
-<form action="/search" method="POST" border="1">
+<form th:action="@{/search/result}" method="POST" border="1">
     <input type="text" name = "keyword" placeholder="" style="width:200px;height:30px;font-size:20px;">
     <br>
     <br>

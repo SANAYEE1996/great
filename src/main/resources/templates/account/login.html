@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login Page</title>
 </head>
 <style>
     #loginGO{
@@ -24,7 +24,7 @@
     <form th:action="@{/account/login}" method="post">
         <div><label> User Name : <input type="text" name="username"/> </label></div>
         <div><label> Password: <input type="password" name="password"/> </label></div>
-        <div><input type="submit" value="Sign In"/></div>
+        <div><input type="submit" value="LogIN"/></div>
     </form>
     <br>
     <a th:href ="@{/account/register}">처음 오셨나요 ? 회원가입</a>

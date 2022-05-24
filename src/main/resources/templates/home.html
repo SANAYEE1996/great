@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home</title>
 </head>
 <body>
 
     <h1>
         개발자모드
     </h1>
-    <a href="/searchPage">  검색 페이지 </a>
+    <a th:href="@{/search}">  검색 페이지 </a>
     <br>
 
 </body>

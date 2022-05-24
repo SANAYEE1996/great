@@ -15,7 +15,7 @@ public class AccountController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/login")
+    @GetMapping("/login")
     public String login(){
 
         return "account/login.html";
@@ -27,7 +27,7 @@ public class AccountController {
         return "account/register.html";
     }
 
-    @PostMapping(value = "/register")
+    @PostMapping("/register")
     public String register(User user){
         System.out.println(user.getUsername());
         System.out.println(user.getPassword());
