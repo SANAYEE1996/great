@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="./fragments/common :: html-head">
     <meta charset="UTF-8">
-    <title>게시글 작성 페이지</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>게시글 작성</title>
 </head>
 <body>
+
+    <div th:replace="fragments/common :: header">여기 왜 헤더 안떠</div>
+
+
     <form th:action="@{/board/write}" method="post">
         <div><label> title <input type="text" name="title"/> </label></div>
         <div><label> content <input type="text" name="content"/> </label></div>
         <div><input type="submit" value="post"/></div>
     </form>
+
+    <div th:replace="fragments/common :: footer">여기 왜 푸터 안떠</div>
 </body>
 </html>

@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="./fragments/common :: html-head">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>게시판</title>
 </head>
 <body>
+    <div th:replace="fragments/common :: header">여기 왜 헤더 안떠</div>
     <h1> 게시판 </h1>
 
     <br>
     <br>
     <br>
     <div>
-        <h2> 작성하기 </h2>
-        <h2> 작성하기 </h2>
-        <a th:href="@{/board/write}"> 일로 와 </a>
-
+        <a th:href="@{/board/write}"> 작성하기 </a>
     </div>
+
+    <div th:replace="fragments/common :: footer">여기 왜 푸터 안떠</div>
 </body>
 </html>
