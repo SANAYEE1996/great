@@ -12,7 +12,6 @@ public class BoardService {
     BoardRepository boardRepository;
 
     public Board save(Board board){
-        board.setId(1l);
 
         return boardRepository.save(board);
     }

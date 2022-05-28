@@ -18,23 +18,16 @@
 
             <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/account/login}">Login</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/board}">Board</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/search}">Search</a>
                     </li>
+                    <li class="nav-item" style="float: right;">
+                        <a class="nav-link" th:href="@{/account/login}">Login</a>
+                    </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit" onclick="alert('준비중');">Search</button>
-                </form>
             </div>
         </nav>
     </div>

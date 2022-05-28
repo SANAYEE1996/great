@@ -1,6 +1,8 @@
 package com.best.great.controller;
 
 import com.best.great.entity.Board;
+import com.best.great.service.BoardService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/board")
 public class BoardController {
+
+    @Autowired
+    BoardService boardService;
 
     @GetMapping("")
     public String board(){
@@ -35,8 +40,9 @@ public class BoardController {
         System.out.println("제목 : "+board.getTitle());
         System.out.println("내용 : "+board.getContent());
         System.out.println("유저 네임 : "+board.getUsername());
+        boardService.save(board);
 
-        return "board/boardPage.html";
+        return "redirect:/board";
     }
 
 
