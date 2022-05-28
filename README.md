@@ -17,8 +17,17 @@ build tools - gradle
 DB - mariaDB
 
 
+design - thymeleaf
+
 
 DB Connection - jpa
 
 
-spring security
+login - spring security
+
+
+board - rest
+
+
+crawling - jsoup
+
