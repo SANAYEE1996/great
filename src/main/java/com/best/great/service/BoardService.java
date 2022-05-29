@@ -12,9 +12,6 @@ public class BoardService {
     @Autowired
     BoardRepository boardRepository;
 
-    public void findAll(Pageable pageable){
-        boardRepository.findOrderById(pageable).map(Board::getId);
-    }
 
     public Board save(Board board){
 
