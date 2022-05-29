@@ -4,6 +4,8 @@ import com.best.great.entity.Role;
 import com.best.great.entity.User;
 import com.best.great.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +28,11 @@ public class UserService {
         return userRepository.save(user);
     }
 
+
+    public String getUsername(){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetails userDetails = (UserDetails)principal;
+        return userDetails.getUsername();
+    }
 
 }

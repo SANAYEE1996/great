@@ -2,9 +2,8 @@ package com.best.great.controller;
 
 import com.best.great.entity.Board;
 import com.best.great.service.BoardService;
+import com.best.great.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +18,9 @@ public class BoardController {
     @Autowired
     BoardService boardService;
 
+    @Autowired
+    UserService userService;
+
     @GetMapping("")
     public String board(){
         return "board/boardPage.html";
@@ -31,10 +33,7 @@ public class BoardController {
 
     @PostMapping("/write")
     public String write(Board board){
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserDetails userDetails = (UserDetails)principal;
-        String username = userDetails.getUsername();
-        board.setUsername(username);
+        board.setUsername(userService.getUsername());
         System.out.println("제대로 받아오나? 체크");
         System.out.println("게시판 아이디 : "+board.getId());
         System.out.println("제목 : "+board.getTitle());
