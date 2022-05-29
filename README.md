@@ -26,7 +26,7 @@ DB Connection - jpa
 login - spring security
 
 
-board - rest
+board - rest , paging
 
 
 crawling - jsoup
