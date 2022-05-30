@@ -44,6 +44,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.security:spring-security-test'
 
+	/*batch*/
+	implementation 'org.springframework.boot:spring-boot-starter-batch'
+
+	/*quartz*/
+	implementation 'org.springframework.boot:spring-boot-starter-quartz'
+
 	/*starter*/
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 
