@@ -47,7 +47,6 @@ public class BoardController {
     public String write(Board board){
         board.setUsername(userService.getUsername());
         System.out.println("제대로 받아오나? 체크");
-        System.out.println("게시판 아이디 : "+board.getId());
         System.out.println("제목 : "+board.getTitle());
         System.out.println("내용 : "+board.getContent());
         System.out.println("유저 네임 : "+board.getUsername());
