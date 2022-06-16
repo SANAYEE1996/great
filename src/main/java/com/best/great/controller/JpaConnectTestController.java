@@ -22,7 +22,7 @@ public class JpaConnectTestController {
         for (Test_Member member : repository.findAll()) {
             result += member.toString() + "</br>";
         }
-
+        System.out.println(result);
         return result;
     }
 
