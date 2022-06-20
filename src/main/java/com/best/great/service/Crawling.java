@@ -23,7 +23,7 @@ public class Crawling {
         sb.append("&oq=");
         sb.append(keyword);
         String url = sb.toString();
-        System.out.println("받은 구글 검색 url : " +url);
+        //System.out.println("받은 구글 검색 url : " +url);
         Connection conn = Jsoup.connect(url);
         String title = "";
         String link = "";
@@ -53,10 +53,11 @@ public class Crawling {
         catch(IOException e){
             e.printStackTrace();
         }
-
+        /*
         for(SearchResult i : list){
             System.out.println(i);
         }
+        */
 
         return list;
     }
