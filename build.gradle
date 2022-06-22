@@ -56,6 +56,10 @@ dependencies {
 
 	/*crawling*/
 	implementation 'org.jsoup:jsoup:1.14.3'
+
+	/*log message*/
+	implementation('org.slf4j:jcl-over-slf4j')
+	implementation('ch.qos.logback:logback-classic')
 }
 
 tasks.named('test') {
