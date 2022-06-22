@@ -6,6 +6,8 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -16,6 +18,9 @@ import java.util.List;
 
 @Service
 public class Crawling {
+
+    private static final Logger log = LoggerFactory.getLogger(Crawling.class);
+
     public List<SearchResult> searchCrawling(String keyword){
         List<SearchResult> list = new ArrayList<>();
         StringBuilder sb = new StringBuilder("https://www.google.com/search?q=");
@@ -53,11 +58,11 @@ public class Crawling {
         catch(IOException e){
             e.printStackTrace();
         }
-        /*
+
         for(SearchResult i : list){
-            System.out.println(i);
+            log.debug("result : {}", i);
         }
-        */
+
 
         return list;
     }

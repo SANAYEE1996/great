@@ -3,6 +3,8 @@ package com.best.great.controller;
 
 import com.best.great.entity.SearchResult;
 import com.best.great.service.Crawling;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +18,12 @@ import java.util.ArrayList;
 @RequestMapping("/search")
 public class SearchController {
 
-
+    private static final Logger log = LoggerFactory.getLogger(SearchController.class);
 
     @GetMapping("")
     public String searchPage() {
-        System.out.println("기본 검색 화면");
+        log.debug("기본 검색 화면");
+        log.trace("기본 검색 화면");
         return "search.html";
     }
 
