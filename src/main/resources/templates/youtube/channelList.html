@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="./fragments/common :: html-head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>채널 리스트</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script th:inline="javascript">
+    /*
+    <![CDATA[*/
+      let channel = /*[[${list}]]*/ 'default';
+      console.log(channel);
+      let id;
+      let i = 0;
+    /*]]>
+    */
+</script>
+<body>
+    <div th:replace="fragments/common :: header">여기 왜 헤더 안떠</div>
+    <h1> 게시판 </h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col"> 썸네일 </th>
+                <th scope="col"> 채널 이름 </th>
+                <th scope="col"> 구독자 수 </th>
+                <th scope="col"> 카테고리 </th>
+                <th scope="col"> 광고 개수 </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="channel,i : ${list}">
+                <td><img th:id = "${i.index}" src='' alt="" width="125" height="125"></td>
+                <td align="center"><span th:text="${channel.ch_name}"> 채널 이름 </span></td>
+                <td align="center"><span th:text="${#numbers.formatInteger(channel.sub,0,'COMMA')}"> 구독자 수 </span></td>
+                <td align="center"><span th:text="${channel.category}"> 카테고리 </span></td>
+                <td align="center"><span th:text="${channel.adcount}"> 광고 개수 </span></td>
+                <script>
+                    id = '#';
+                    id = id + i;
+                    console.log(channel.content[i]);
+                    $(id).attr('src',channel.content[i].img);
+                    i = i + 1;
+                </script>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <br>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                <a class="page-link">Previous</a>
+            </li>
+            <li class="page-item" th:each="i : ${#numbers.sequence(startPage, endPage)}">
+                <a class="page-link" th:href="@{/channel/list(page=${i-1})}" th:text="${i}">1</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
+    <br>
+
+
+    <div th:replace="fragments/common :: footer">여기 왜 푸터 안떠</div>
+</body>
+</html>
