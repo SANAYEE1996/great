@@ -21,9 +21,13 @@ public class ChannelController {
     @GetMapping("/list")
     public String list(Model model, @PageableDefault(size = 10)Pageable pageable){
         Page<Channel> channels = channelService.getChannel(pageable);
+        int startPage = Math.max(1,channels.getPageable().getPageNumber()-4);
+        int endPage = Math.min(channels.getTotalPages(),channels.getPageable().getPageNumber()+4);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("list",channels);
 
 
-
-        return "";
+        return "youtube/channelList";
     }
 }
