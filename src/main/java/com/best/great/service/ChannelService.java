@@ -13,8 +13,15 @@ public class ChannelService {
     @Autowired
     ChannelRepository adVideoRepository;
 
-    public Page<Channel> getChannel(Pageable pageable){
+    public Page<Channel> getChannelList(Pageable pageable){
         return adVideoRepository.findAll(pageable);
     }
+
+    public Channel getChannelDetail(String url){
+
+        return adVideoRepository.getById(url);
+    }
+
+
 
 }
