@@ -2,6 +2,8 @@ package com.best.great.controller;
 
 import com.best.great.entity.Channel;
 import com.best.great.service.ChannelService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,9 +14,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/channel")
 public class ChannelController {
+
+    private static final Logger log = LoggerFactory.getLogger(ChannelController.class);
 
     @Autowired
     ChannelService channelService;
@@ -35,8 +41,8 @@ public class ChannelController {
     @GetMapping("/detail")
     public String detailPage(Model model,@RequestParam("ch_url") String ch_url){
 
-        Channel channel = channelService.getChannelDetail(ch_url);
-        System.out.println(channel.getCh_name());
+        Channel channel = channelService.getChannelDetail(ch_url).get();
+        log.debug("channel detail information : {} ", channel);
         model.addAttribute("detail", channel);
 
 
