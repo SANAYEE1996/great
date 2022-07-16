@@ -42,7 +42,10 @@ public class ChannelController {
     public String detailPage(Model model,@RequestParam("ch_url") String ch_url){
 
         Channel channel = channelService.getChannelDetail(ch_url).get();
-        log.debug("channel detail information : {} ", channel);
+        String img = channel.getImg();
+        log.info("channel detail information : {} ", channel);
+        log.info("channel img : {} ", img);
+        model.addAttribute("imgUrl", img);
         model.addAttribute("detail", channel);
 
 

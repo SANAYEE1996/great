@@ -6,13 +6,21 @@
     <title>채널 세부 정보 페이지</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script th:inline="javascript">
+    /*
+    <![CDATA[*/
+      let imgUrl = /*[[${imgUrl}]]*/ 'default';
+    /*]]>
+    */
+</script>
 <body>
     <div th:replace="fragments/common :: header">여기 왜 헤더 안떠</div>
 
     <table border="0" width = "90%">
         <tr th:each = "detail : ${detail}">
             <td>
-                <img id = 'profile' th:src="@{detail.img}" alt="" width = "150px" height = "150px"><br>
+                <img src="" alt="" width = "150px" height = "150px"><br>
+                <script> $('img').attr('src',imgUrl); </script>
                 채널 명 : <span th:text = "${detail.ch_name}"></span><br>
                 가입 날짜 : <span th:text = "${detail.regdate}"></span><br>
                 누적 조회수 : <div><strong th:text = "${#numbers.formatInteger(totview,0,'COMMA')}"></strong></div>
