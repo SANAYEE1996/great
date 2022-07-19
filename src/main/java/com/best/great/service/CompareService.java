@@ -15,10 +15,21 @@ import java.util.Optional;
 public class CompareService {
 
     @Autowired
-    ChannelRepository adVideoRepository;
+    ChannelRepository channelRepository;
+
+    @Autowired
+    SoundSearcherService soundSearcherService;
 
     public List<Channel> getSearchResult(String searchString){
-        List<Channel> exam = adVideoRepository.findAll();
+        List<Channel> exam = channelRepository.findAll();
+        int i = 0;
+        while(i < exam.size()){
+            if(!soundSearcherService.isMatch(exam.get(i).getCh_name(),searchString)){
+                exam.remove(i);
+                continue;
+            }
+            i++;
+        }
         return exam;
     }
 
