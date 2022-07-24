@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -40,6 +41,20 @@ public class ChannelController {
 
     @GetMapping("/detail")
     public String detailPage(Model model,@RequestParam("ch_url") String ch_url){
+
+        Channel channel = channelService.getChannelDetail(ch_url).get();
+        String img = channel.getImg();
+        log.info("channel detail information : {} ", channel);
+        log.info("channel img : {} ", img);
+        model.addAttribute("imgUrl", img);
+        model.addAttribute("detail", channel);
+
+
+        return "youtube/channelDetailPage";
+    }
+
+    @PostMapping("/search")
+    public String filterPage(Model model,@RequestParam("ch_url") String ch_url){
 
         Channel channel = channelService.getChannelDetail(ch_url).get();
         String img = channel.getImg();
