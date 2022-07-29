@@ -2,6 +2,7 @@ package com.best.great.controller;
 
 import com.best.great.entity.Channel;
 import com.best.great.service.ChannelService;
+import com.best.great.service.CompareService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -25,6 +27,9 @@ public class ChannelController {
 
     @Autowired
     ChannelService channelService;
+
+    @Autowired
+    CompareService compareService;
 
     @GetMapping("/list")
     public String list(Model model, @PageableDefault(size = 10)Pageable pageable){
@@ -54,16 +59,12 @@ public class ChannelController {
     }
 
     @PostMapping("/search")
-    public String filterPage(Model model,@RequestParam("ch_url") String ch_url){
+    public String filterPage(Model model,@RequestParam("initial_sound") String initial_sound){
 
-        Channel channel = channelService.getChannelDetail(ch_url).get();
-        String img = channel.getImg();
-        log.info("channel detail information : {} ", channel);
-        log.info("channel img : {} ", img);
-        model.addAttribute("imgUrl", img);
-        model.addAttribute("detail", channel);
+        List<Channel> getList = compareService.getSearchResult(initial_sound);
+        log.info("결과 : {}", getList);
+        model.addAttribute("list",getList);
 
-
-        return "youtube/channelDetailPage";
+        return "youtube/channelSearchList";
     }
 }
