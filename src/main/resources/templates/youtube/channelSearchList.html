@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="./fragments/common :: html-head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>채널 리스트</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script th:inline="javascript">
+    /*
+    <![CDATA[*/
+
+    /*]]>
+    */
+</script>
+<body>
+    <div th:replace="fragments/common :: header">여기 왜 헤더 안떠</div>
+    <h1> 게시판 </h1>
+    <div style="float:right;">
+        <form th:action="@{/channel/search}" method="POST" border="1">
+            <input type="text" name = "initial_sound" placeholder="" style="width:200px;height:30px;font-size:20px;">
+            <button type="submit">검색</button>
+        </form>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col"> 썸네일 </th>
+                <th scope="col"> 채널 이름 </th>
+                <th scope="col"> 구독자 수 </th>
+                <th scope="col"> 카테고리 </th>
+                <th scope="col"> 광고 개수 </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="channel,i : ${list}">
+                <td><img th:id = "${i.index}" src='' alt="" width="125" height="125"></td>
+                <td align="center"><span th:text="${channel.ch_name}"> 채널 이름 </span></td>
+                <td align="center"><a th:href="@{/channel/detail(ch_url=${channel.ch_url})}"><span th:text="${#numbers.formatInteger(channel.sub,0,'COMMA')}">
+                                    구독자 수  </span></a></td>
+                <td align="center"><span th:text="${channel.category}"> 카테고리 </span></td>
+                <td align="center"><span th:text="${channel.adcount}"> 광고 개수 </span></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <div th:replace="fragments/common :: footer">여기 왜 푸터 안떠</div>
+</body>
+</html>
