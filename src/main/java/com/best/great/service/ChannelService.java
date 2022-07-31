@@ -23,15 +23,16 @@ public class ChannelService {
     public Page<Channel> getChannelList(Pageable pageable){
         Page<Channel> list = channelRepository.findAll(pageable);
         log.info("실험용 {}", list);
-        log.info("size :  {}", list.get().collect(Collectors.toList()).size());
-        if(list.get().collect(Collectors.toList()).get(0).getCh_name().contains("풍")){
-            list.get().collect(Collectors.toList()).remove(0);
-            log.info("삭제 됐나?");
-            log.info("진짜 삭제됐나? : {}",list.get().collect(Collectors.toList()).get(0).getCh_name());
+        log.info("여러 메서드 실행 : {}",list.toList());
+        log.info("여어러 메서드 실행 : {}", channelRepository.findAll(list.nextPageable()));
+        Pageable pageable1 = channelRepository.findAll(list.nextPageable()).nextPageable();
+        log.info("여어러 메서드 실행 : {}", channelRepository.findAll(pageable1));
+
+        if(list.toList().get(0).getCh_name().contains("풍")){
+            log.info("크기 : {}",list.toList().size());
+            //list.toList().remove(0);
+
         }
-        log.info("실험용 {}", list);
-        log.info("size :  {}", list.get().collect(Collectors.toList()).size());
-        log.info("for 실험 : {}",list.get().collect(Collectors.toList()).get(0).getCh_name());
         return channelRepository.findAll(pageable);
     }
 
