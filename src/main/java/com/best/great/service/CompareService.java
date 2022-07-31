@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CompareService {
@@ -38,5 +37,6 @@ public class CompareService {
         log.info("가져 온 것 : {}",exam );
         return exam;
     }
+
 
 }
