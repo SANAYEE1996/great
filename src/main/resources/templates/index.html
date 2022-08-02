@@ -20,6 +20,39 @@
         welcome Great Application!
     </h1>
 
+    <canvas id="canvas" width="300" height="300"></canvas>
+
+    <script type="import">
+         {
+          "imports": {
+            "three": "https://unpkg.com/three@0.141.0/build...",
+            "GLTFLoader" : "https://unpkg.com/three@0.141.0/examp..."
+          }
+        }
+    </script>
+
+    <script type="module">
+        import {GLTFLoader} from 'GLTFLoader';
+        import * as THREE from 'three';
+
+        let scene = new THREE.Scene();
+        let renderer = new THREE.WebGLRenderer({
+            canvas : document.querySelector('#canvas')
+        });
+
+        let camera = new THREE.PerspectiveCamera(30,1);
+        camera.position.set(0,0,0);
+
+        let loader = new GLTFLoader();
+        loader.load('walkingCat.gltf', function(gltf){
+            scene.add(gltf.scene);
+            renderer.render(scene,camera);
+        });
+
+
+    </script>
+
+
     <div th:replace="fragments/common :: footer">여기 왜 푸터 안떠</div>
 </body>
 </html>
