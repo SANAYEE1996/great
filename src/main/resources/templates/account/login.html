@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="./fragments/common :: html-head">
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>게시판</title>
 </head>
 <style>
     #loginGO{
@@ -15,7 +16,7 @@
     }
 </style>
 <body>
-
+    <div th:replace="fragments/common :: header">여기 왜 헤더 안떠</div>
     <div th:if="${param.error}" role="alert">
         Invalid username and password.
     </div>
@@ -30,5 +31,6 @@
     <br>
     <a th:href ="@{/account/register}">처음 오셨나요 ? 회원가입</a>
 
+    <div th:replace="fragments/common :: footer">여기 왜 푸터 안떠</div>
 </body>
 </html>
