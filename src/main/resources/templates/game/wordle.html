@@ -1,12 +1,11 @@
 <!doctype html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="./fragments/common :: html-head">
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Wordle Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Great</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
     input {
         width:50px;
@@ -16,15 +15,37 @@
     }
 </style>
 <body>
+    <div th:replace="fragments/common :: header">여기 왜 헤더 안떠</div>
     <input class="input">
     <input class="input">
     <input class="input">
     <input class="input">
     <input class="input">
-<button> submit </button>
+    <button> submit </button>
+    <div th:replace="fragments/common :: footer">여기 왜 푸터 안떠</div>
 </body>
 <script>
     var answer = 'abcde';
+    $('button').click(function(){
 
+        var inputArray = new Array();
+        $('input').each(function(){
+            inputArray.push($(this).val());
+        });
+
+        for(var i = 0; i < inputArray.length; i++){
+            if(answer.charAt(i) == inputArray[i]){
+                $('input').eq(i).css({"background-color":"green"});
+            }
+            else if(answer.includes(inputArray[i])){
+                $('input').eq(i).css({"background-color":"yellow"});
+            }
+            else{
+                $('input').eq(i).css({"background-color":"gray"});
+            }
+        }
+        console.log('받은 인풋 값들 : ',inputArray);
+
+    });
 </script>
 </html>
