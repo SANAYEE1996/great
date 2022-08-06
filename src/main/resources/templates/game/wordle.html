@@ -13,16 +13,17 @@
         font-size:40px;
         text-align: center;
     }
+
 </style>
 <body>
-    <div th:replace="fragments/common :: header">여기 왜 헤더 안떠</div>
-    <input class="input">
-    <input class="input">
-    <input class="input">
-    <input class="input">
-    <input class="input">
-    <button> submit </button>
-    <div th:replace="fragments/common :: footer">여기 왜 푸터 안떠</div>
+<div th:replace="fragments/common :: header">여기 왜 헤더 안떠</div>
+<input class="input">
+<input class="input">
+<input class="input">
+<input class="input">
+<input class="input">
+<button> submit</button>
+<div th:replace="fragments/common :: footer">여기 왜 푸터 안떠</div>
 </body>
 <script>
     var answer = 'abcde';
@@ -41,11 +42,20 @@
                 $('input').eq(i).css({"background-color":"yellow"});
             }
             else{
-                $('input').eq(i).css({"background-color":"gray"});
+                $('input').eq(i).css({"background-color":"lightgrey"});
             }
         }
+
+        var template = '<div>
+            <input class="input">
+            <input class="input">
+            <input class="input">
+            <input class="input">
+            <input class="input">
+        </div>';
         console.log('받은 인풋 값들 : ',inputArray);
 
     });
+
 </script>
 </html>
