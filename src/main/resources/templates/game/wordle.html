@@ -26,33 +26,30 @@
 <script>
     var answer = 'abcde';
     $('button').click(function(){
-
-        var inputArray = new Array();
-        $('input').each(function(){
-            inputArray.push($(this).val());
-        });
-
+        var inputArray = document.querySelectorAll('.input');
+        console.log(inputArray);
         for(var i = 0; i < inputArray.length; i++){
-            if(answer.charAt(i) == inputArray[i]){
-                $('input').eq(i).css({"background-color":"green"});
+            if(answer.charAt(i) == inputArray[i].value){
+                inputArray[i].style.background = "green";
             }
-            else if(answer.includes(inputArray[i])){
-                $('input').eq(i).css({"background-color":"yellow"});
+            else if(answer.includes(inputArray[i].value)){
+                inputArray[i].style.background = "yellow";
             }
             else{
-                $('input').eq(i).css({"background-color":"gray"});
+                inputArray[i].style.background = "gray";
             }
-            $('input').eq(i).remove('input');
+            inputArray[i].classList.remove('input');
         }
 
-        var template = '<div>
-            <input class="input">
-            <input class="input">
-            <input class="input">
-            <input class="input">
-            <input class="input">
-        </div>';
-        //$('body').append(template);
+        var template = '<br><div>'+
+            '<input class="input">'+
+            '<input class="input">'+
+            '<input class="input">'+
+            '<input class="input">'+
+            '<input class="input">'+
+            '</div>';
+
+        $('body').append(template);
         console.log('받은 인풋 값들 : ',inputArray);
 
     });
