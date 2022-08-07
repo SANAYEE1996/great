@@ -16,14 +16,12 @@
 
 </style>
 <body>
-<div th:replace="fragments/common :: header">여기 왜 헤더 안떠</div>
-
     <input class="input">
     <input class="input">
     <input class="input">
     <input class="input">
     <input class="input">
-<button class="wordleSubmit"> submit</button>
+    <button class="wordleSubmit"> submit</button>
 </body>
 <script>
     var answer = 'abcde';
@@ -42,19 +40,19 @@
                 $('input').eq(i).css({"background-color":"yellow"});
             }
             else{
-                $('input').eq(i).css({"background-color":"light-gray"});
+                $('input').eq(i).css({"background-color":"gray"});
             }
             $('input').eq(i).remove('input');
         }
 
-        var template = '<div id="inputArea">
+        var template = '<div>
             <input class="input">
             <input class="input">
             <input class="input">
             <input class="input">
             <input class="input">
         </div>';
-        $('#inputArea').append(template);
+        //$('body').append(template);
         console.log('받은 인풋 값들 : ',inputArray);
 
     });
