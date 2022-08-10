@@ -54,5 +54,10 @@
 
     });
 
+    $('.input').on('keyup',function(){
+        console.log($(this).value);
+        if($(this).value.length == 1)
+            $(this).next('.input').focus();
+    });
 </script>
 </html>
