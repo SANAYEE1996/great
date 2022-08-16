@@ -38,7 +38,7 @@
             <tr th:each="channel,i : ${list}">
                 <td><img th:id = "${i.index}" src='' alt="" width="125" height="125"></td>
                 <td align="center"><span th:text="${channel.ch_name}"> 채널 이름 </span></td>
-                <td align="center"><a th:href="@{/channel/detail(ch_url=${channel.ch_url})}"><span th:text="${#numbers.formatInteger(channel.sub,0,'COMMA')}">
+                <td align="center"><a th:href="@{/channel/detail(channelUrl=${channel.channelUrl})}"><span th:text="${#numbers.formatInteger(channel.sub,0,'COMMA')}">
                                     구독자 수  </span></a></td>
                 <td align="center"><span th:text="${channel.category}"> 카테고리 </span></td>
                 <td align="center"><span th:text="${channel.adcount}"> 광고 개수 </span></td>

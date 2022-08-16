@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class Channel {
 
     @Id
-    private String ch_url;
+    private String channelUrl;
 
     private int monthView;
     private String ch_name;

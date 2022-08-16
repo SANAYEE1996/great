@@ -1,6 +1,8 @@
 package com.best.great.controller;
 
+import com.best.great.entity.Advideo;
 import com.best.great.entity.Channel;
+import com.best.great.service.AdvideoService;
 import com.best.great.service.ChannelService;
 import com.best.great.service.CompareService;
 import org.slf4j.Logger;
@@ -30,6 +32,9 @@ public class ChannelController {
     @Autowired
     CompareService compareService;
 
+    @Autowired
+    AdvideoService advideoService;
+
     @GetMapping("/list")
     public String list(Model model, @PageableDefault(size = 10)Pageable pageable){
         Page<Channel> channels = channelService.getChannelList(pageable);
@@ -38,7 +43,6 @@ public class ChannelController {
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
         model.addAttribute("list",channels);
-
 
         return "youtube/channelList";
     }
@@ -52,7 +56,9 @@ public class ChannelController {
         log.info("channel img : {} ", img);
         model.addAttribute("imgUrl", img);
         model.addAttribute("detail", channel);
-
+        List<Advideo> advideoList = advideoService.getAllAdVideoByChUrl(ch_url);
+        log.info("채널 URL : {} ", ch_url);
+        log.info("channel advideo info : {} ", advideoList);
 
         return "youtube/channelDetailPage";
     }
