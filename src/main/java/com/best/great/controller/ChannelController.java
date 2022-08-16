@@ -46,7 +46,7 @@ public class ChannelController {
     @GetMapping("/detail")
     public String detailPage(Model model,@RequestParam("ch_url") String ch_url){
 
-        Channel channel = channelService.getChannelDetail(ch_url).get();
+        Channel channel = channelService.getChannelDetail(ch_url);
         String img = channel.getImg();
         log.info("channel detail information : {} ", channel);
         log.info("channel img : {} ", img);

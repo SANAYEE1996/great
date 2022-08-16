@@ -36,10 +36,11 @@ public class ChannelService {
         return channelRepository.findAll(pageable);
     }
 
-    public Optional<Channel> getChannelDetail(String url){
+    public Channel getChannelDetail(String url){
 
-        return channelRepository.findById(url);
+        return channelRepository.findById(url).get();
     }
+
 
 
 
