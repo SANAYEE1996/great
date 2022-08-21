@@ -17,6 +17,7 @@ public class AdvideoService {
     AdvideoRepository advideoRepository;
 
     public List<Advideo> getAllAdVideoByChUrl(String ch_url){
+
         return advideoRepository.findAllByChannelUrl(ch_url);
     }
 

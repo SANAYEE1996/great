@@ -57,6 +57,7 @@ public class ChannelController {
         model.addAttribute("imgUrl", img);
         model.addAttribute("detail", channel);
         List<Advideo> advideoList = advideoService.getAllAdVideoByChUrl(ch_url);
+        log.info("갔다오긴 했나요?");
         log.info("채널 URL : {} ", ch_url);
         log.info("channel advideo info : {} ", advideoList);
 
