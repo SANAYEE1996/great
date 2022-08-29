@@ -12,4 +12,9 @@ public class GameController {
     public String wordle(){
         return "game/wordle";
     }
+
+    @GetMapping("/dinosaur")
+    public String dinosaur(){
+        return "game/dinosaur";
+    }
 }
