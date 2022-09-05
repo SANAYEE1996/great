@@ -19,7 +19,31 @@
     <h1>
         welcome Great Application!
     </h1>
-
+    <div class = "row">
+        <div class="col-md-12">
+            <div class="input-group" style="width:71%; margin:0 auto">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><img id = "icon"></img></span>
+                </div>
+                <div class="form-control" style=" height:auto">
+                    <strong>
+                        <img id="weather1" src="https://media.istockphoto.com/vectors/thin-out-line-red-pin-location-gps-icon-geometric-marker-flat-shape-vector-id1160934392?k=6&m=1160934392&s=170667a&w=0&h=lEoHfCzvvA8vNisLpCln9GygHFGdsaV8gWmj2zh9KrE="
+                             width="30px" height="23px" style="float:left; margin:0 0 0 45%;" >
+                        <div id="js_weather"></div>
+                        <div  style="text-align:center;">
+                            <div class = "now"></div>
+                            <div class="feel"></div>
+                            <div class="max_min_temp"></div>
+                            <div class = "status"></div>
+                            <div id = "sel"></div>
+                            <div class = "comment"></div>
+                            <div id= "sel2"></div>
+                        </div>
+                    </strong>
+                </div>
+            </div>
+        </div>
+    </div>
     <canvas id="canvas" width="300" height="300"></canvas>
 
     <script type="import">
@@ -51,6 +75,7 @@
 
 
     </script>
+    <script src="./js/weather.js"></script>
 
 
     <div th:replace="fragments/common :: footer">여기 왜 푸터 안떠</div>
