@@ -23,7 +23,6 @@ function getWeather(lat, lng) {
         const max = json.main.temp_max;
         const min = json.main.temp_min;
         const feel = json.main.feels_like;
-        console.log(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_key}&units=metric`);
 		 $.ajax({
 		       url : 'englishToKorean.jsp?dong='+encodeURIComponent(place),
 		      	type : 'GET',
@@ -35,7 +34,6 @@ function getWeather(lat, lng) {
 		        	weather.innerHTML = html;
 		       	}
 		   });
-       	//weather.innerHTML = `${place}`
 
         now.innerText = `현재 온도 : ${temperature}°C`
         maxmin.innerText = `최고 : ${max}°C / 최저 : ${min}°C `
@@ -66,7 +64,6 @@ function handleGeoError() {
 }
 function askForCoords() {
     navigator.geolocation.getCurrentPosition(handleGeoSuccess, handleGeoError);
-    // navigator.geolocation.getCurrentPosition(success[, error[, [options]])
 }
 
 function loadCoords() {
