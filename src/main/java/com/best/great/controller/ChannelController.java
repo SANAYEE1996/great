@@ -36,13 +36,16 @@ public class ChannelController {
     AdvideoService advideoService;
 
     @GetMapping("/list")
-    public String list(Model model, @PageableDefault(size = 10)Pageable pageable){
+    public String list(Model model, @PageableDefault(size = 15)Pageable pageable){
+        log.info("너 왜이러니 : {}", pageable);
         Page<Channel> channels = channelService.getChannelList(pageable);
         int startPage = Math.max(1,channels.getPageable().getPageNumber()-4);
         int endPage = Math.min(channels.getTotalPages(),channels.getPageable().getPageNumber()+4);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
         model.addAttribute("list",channels);
+        log.info("이런 우에 해야됌 ! {}", channels.getContent().get(0).getCh_name());
+        log.info("이런 우에 해야됌 ! {}", channels.getContent().get(1).getCh_name());
 
         return "youtube/channelList";
     }
