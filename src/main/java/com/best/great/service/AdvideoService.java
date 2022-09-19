@@ -9,18 +9,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class AdvideoService {
     private static final Logger log = LoggerFactory.getLogger(AdvideoService.class);
 
     @Autowired
     AdvideoRepository advideoRepository;
-
-    //public List<Advideo> getAllAdVideoByChUrl(String ch_url){
-    //    return advideoRepository.findAllByChannelUrl(ch_url);
-    //}
 
     public Page<Advideo> getAdvideoList(String ch_url,Pageable pageable){
 

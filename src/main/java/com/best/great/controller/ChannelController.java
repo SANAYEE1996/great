@@ -55,7 +55,6 @@ public class ChannelController {
 
         Channel channel = channelService.getChannelDetail(ch_url);
         String img = channel.getImg();
-        //List<Advideo> advideoList = advideoService.getAllAdVideoByChUrl(ch_url);
         Page<Advideo> list = advideoService.getAdvideoList(ch_url, pageable);
         int startPage = Math.max(1,list.getPageable().getPageNumber()-5);
         int endPage = Math.min(list.getTotalPages(),list.getPageable().getPageNumber()+5);
@@ -64,11 +63,9 @@ public class ChannelController {
         log.info("channel img : {} ", img);
         log.info("갔다오긴 했나요?");
         log.info("채널 URL : {} ", ch_url);
-        //log.info("channel advideo info : {} ", advideoList);
 
         model.addAttribute("imgUrl", img);
         model.addAttribute("detail", channel);
-       // model.addAttribute("advideoList", advideoList);
         model.addAttribute("list", list);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
