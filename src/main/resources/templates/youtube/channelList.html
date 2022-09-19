@@ -9,7 +9,6 @@
     /*
     <![CDATA[*/
       let channel = /*[[${list}]]*/ 'default';
-      console.log(channel);
       let id;
       let i = 0;
     /*]]>
@@ -45,7 +44,6 @@
                 <script>
                     id = '#';
                     id = id + i;
-                    console.log(channel.content[i]);
                     $(id).attr('src',channel.content[i].img);
                     i = i + 1;
                 </script>

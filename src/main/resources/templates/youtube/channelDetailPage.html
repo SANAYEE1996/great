@@ -10,7 +10,7 @@
     <![CDATA[*/
       let header = 'https://www.youtube.com/embed/';
       let imgUrl = /*[[${imgUrl}]]*/ 'default';
-      let ad = /*[[${advideoList}]]*/ 'default';
+      let adList = /*[[${list}]]*/ 'default';
       let url;
       let id;
       let i = 0;
@@ -39,18 +39,18 @@
         </tr>
     </table>
 
-    <table border="2" width = "80%">
-        <tr th:if="${advideoList.empty}" height="50px">
+    <table width = "80%">
+        <tr th:if="${list.empty}" height="50px">
             <img src="https://i.ibb.co/QdXBPC3/empty.png" alt="" width="80%" height="80%">
         </tr>
-        <tr th:unless="${advideoList.empty}" height="50px">
+        <tr th:unless="${list.empty}" height="50px">
             <th> 광고 영상 </th>
             <th width = "10px"></th>
             <th> 업로드 날짜 </th>
             <th width = "10px"></th>
             <th> 좋아요 수 </th>
         </tr>
-        <tr th:each = "ad,i : ${advideoList}">
+        <tr th:each = "ad,i : ${list}">
             <td>
                 <iframe th:id="${i.index}" width="480" height="270" src=""
                         title="YouTube video player" frameborder="0"
@@ -59,8 +59,7 @@
                 <script>
                     id = '#';
                     id = id + i;
-                    url = header + ad[i].ad_url;
-                    console.log(url);
+                    url = header + adList.content[i].ad_url;
                     $(id).attr('src',url);
                     i = i+1;
                   </script>
@@ -71,6 +70,23 @@
             <td><span th:text="${#numbers.formatInteger(ad.likecnt,0,'COMMA')}"> 좋아요 수 </span></td>
         </tr>
     </table>
+
+    <br>
+    <br>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                <a class="page-link">Previous</a>
+            </li>
+            <li class="page-item" th:each="i : ${#numbers.sequence(startPage, endPage)}">
+                <a class="page-link" th:href="@{/channel/detail(channelUrl=${chUrl},page=${i-1})}" th:text="${i}">1</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
+    <br>
 
     <div th:replace="fragments/common :: footer">여기 왜 푸터 안떠</div>
 </body>
