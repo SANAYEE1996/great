@@ -44,14 +44,12 @@ public class ChannelController {
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
         model.addAttribute("list",channels);
-        log.info("이런 우에 해야됌 ! {}", channels.getContent().get(0).getCh_name());
-        log.info("이런 우에 해야됌 ! {}", channels.getContent().get(1).getCh_name());
 
         return "youtube/channelList";
     }
 
     @GetMapping("/detail")
-    public String detailPage(Model model,@RequestParam("ch_url") String ch_url){
+    public String detailPage(Model model,@RequestParam("channelUrl") String ch_url){
 
         Channel channel = channelService.getChannelDetail(ch_url);
         String img = channel.getImg();
