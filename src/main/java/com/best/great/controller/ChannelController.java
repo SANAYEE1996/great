@@ -36,11 +36,13 @@ public class ChannelController {
     AdvideoService advideoService;
 
     @GetMapping("/list")
-    public String list(Model model, @PageableDefault(size = 15)Pageable pageable){
-        log.info("너 왜이러니 : {}", pageable);
+    public String list(Model model, @PageableDefault(size = 10)Pageable pageable){
         Page<Channel> channels = channelService.getChannelList(pageable);
-        int startPage = Math.max(1,channels.getPageable().getPageNumber()-4);
-        int endPage = Math.min(channels.getTotalPages(),channels.getPageable().getPageNumber()+4);
+        int startPage = Math.max(1,channels.getPageable().getPageNumber()-10);
+        int endPage = Math.min(channels.getTotalPages(),channels.getPageable().getPageNumber()+10);
+
+        log.info("채널 페이지");
+
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
         model.addAttribute("list",channels);
@@ -49,20 +51,29 @@ public class ChannelController {
     }
 
     @GetMapping("/detail")
-    public String detailPage(Model model,@RequestParam("channelUrl") String ch_url){
+    public String detailPage(Model model,@RequestParam("channelUrl") String ch_url, @PageableDefault(size = 5)Pageable pageable){
 
         Channel channel = channelService.getChannelDetail(ch_url);
         String img = channel.getImg();
+        //List<Advideo> advideoList = advideoService.getAllAdVideoByChUrl(ch_url);
+        Page<Advideo> list = advideoService.getAdvideoList(ch_url, pageable);
+        int startPage = Math.max(1,list.getPageable().getPageNumber()-5);
+        int endPage = Math.min(list.getTotalPages(),list.getPageable().getPageNumber()+5);
+
         log.info("channel detail information : {} ", channel);
         log.info("channel img : {} ", img);
-        List<Advideo> advideoList = advideoService.getAllAdVideoByChUrl(ch_url);
         log.info("갔다오긴 했나요?");
         log.info("채널 URL : {} ", ch_url);
-        log.info("channel advideo info : {} ", advideoList);
+        //log.info("channel advideo info : {} ", advideoList);
 
         model.addAttribute("imgUrl", img);
         model.addAttribute("detail", channel);
-        model.addAttribute("advideoList", advideoList);
+       // model.addAttribute("advideoList", advideoList);
+        model.addAttribute("list", list);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("chUrl", ch_url);
+
         return "youtube/channelDetailPage";
     }
 

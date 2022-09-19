@@ -19,6 +19,7 @@ public class ChannelService {
     ChannelRepository channelRepository;
 
     public Page<Channel> getChannelList(Pageable pageable){
+
         return channelRepository.findAll(pageable);
     }
 
