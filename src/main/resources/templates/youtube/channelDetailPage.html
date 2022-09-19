@@ -8,14 +8,19 @@
 <script th:inline="javascript">
     /*
     <![CDATA[*/
+      let header = 'https://www.youtube.com/embed/';
       let imgUrl = /*[[${imgUrl}]]*/ 'default';
+      let ad = /*[[${advideoList}]]*/ 'default';
+      let url;
+      let id;
+      let i = 0;
     /*]]>
     */
 </script>
 <body>
     <div th:replace="fragments/common :: header">여기 왜 헤더 안떠</div>
 
-    <table border="0" width = "90%">
+    <table border="0" width = "20%">
         <tr th:each = "detail : ${detail}">
             <td>
                 <img src="" alt="" width = "150px" height = "150px"><br>
@@ -31,6 +36,39 @@
                 광고 수 : <span th:text = "${#numbers.formatInteger(detail.adcount,0,'COMMA')}"></span><br>
                 연락처 : <span th:text = "${detail.contact}"></span>
             </td>
+        </tr>
+    </table>
+
+    <table border="2" width = "80%">
+        <tr th:if="${advideoList.empty}" height="50px">
+            <img src="https://i.ibb.co/QdXBPC3/empty.png" alt="" width="80%" height="80%">
+        </tr>
+        <tr th:unless="${advideoList.empty}" height="50px">
+            <th> 광고 영상 </th>
+            <th width = "10px"></th>
+            <th> 업로드 날짜 </th>
+            <th width = "10px"></th>
+            <th> 좋아요 수 </th>
+        </tr>
+        <tr th:each = "ad,i : ${advideoList}">
+            <td>
+                <iframe th:id="${i.index}" width="480" height="270" src=""
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+                <script>
+                    id = '#';
+                    id = id + i;
+                    url = header + ad[i].ad_url;
+                    console.log(url);
+                    $(id).attr('src',url);
+                    i = i+1;
+                  </script>
+            </td>
+            <td></td>
+            <td><span th:text="${ad.upday}"> 업로드 날짜 </span></td>
+            <td></td>
+            <td><span th:text="${#numbers.formatInteger(ad.likecnt,0,'COMMA')}"> 좋아요 수 </span></td>
         </tr>
     </table>
 
