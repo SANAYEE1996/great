@@ -65,7 +65,7 @@
                   </script>
             </td>
             <td></td>
-            <td><span th:text="${ad.upday}"> 업로드 날짜 </span></td>
+            <td><a th:href="@{/advideo/detail(ad_url=${ad.ad_url})}"><span th:text="${ad.upday}"> 업로드 날짜 </span></a></td>
             <td></td>
             <td><span th:text="${#numbers.formatInteger(ad.likecnt,0,'COMMA')}"> 좋아요 수 </span></td>
         </tr>
