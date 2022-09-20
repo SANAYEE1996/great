@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="./fragments/common :: html-head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>채널 세부 정보 페이지</title>
+</head>
+<body>
+    <div th:replace="fragments/common :: header">여기 왜 헤더 안떠</div>
+
+    <table border="0" width = "20%">
+        <tr th:each = "a : ${detail}">
+            <img src="" alt="" width = "150px" height = "150px"><br>
+            <td>
+            이름 : <span th:text = "${a.name}"></span><br>
+            업로드 날짜 : <span th:text = "${a.upday}"></span><br>
+            카테고리 : <span th:text = "${a.category}"></span><br>
+            좋아요 수 : <span th:text = "${#numbers.formatInteger(a.likecnt,0,'COMMA')}"></span><br>
+            싫어요 수 : <span th:text = "${#numbers.formatInteger(a.dislike,0,'COMMA')}"></span><br>
+            좋아요 비율 : <span th:text = "${a.ratio}"></span><br>
+            조회수 : <span th:text = "${#numbers.formatInteger(a.click,0,'COMMA')}"></span><br>
+            댓글 수 : <span th:text = "${#numbers.formatInteger(a.comment,0,'COMMA')}"></span><br>
+            해시태그 : <span th:text = "${a.hashtag}"></span><br>
+            </td>
+        </tr>
+    </table>
+
+    <div th:replace="fragments/common :: footer">여기 왜 푸터 안떠</div>
+</body>
+</html>
