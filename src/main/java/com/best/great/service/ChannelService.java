@@ -19,12 +19,15 @@ public class ChannelService {
     ChannelRepository channelRepository;
 
     public Page<Channel> getChannelList(Pageable pageable){
-
+        log.info("현재 페이지 사이즈 : {} // 현재 페이지 넘버 : {}",pageable.getPageSize(),pageable.getPageNumber());
         return channelRepository.findAll(pageable);
     }
 
     public Channel getChannelDetail(String url){
-        return channelRepository.findById(url).get();
+        if(channelRepository.findById(url).isPresent()){
+            return channelRepository.findById(url).get();
+        }
+        return new Channel();
     }
 
 
