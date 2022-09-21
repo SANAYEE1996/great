@@ -24,7 +24,7 @@ public class AdvideoController {
 
     @GetMapping("/detail")
     public String getAdvideoDetail(Model model, @RequestParam("ad_url") String ad_url){
-        Advideo getAdvideoDetailList = advideoService.getDetailAdvideo(ad_url).get();
+        Advideo getAdvideoDetailList = advideoService.getDetailAdvideo(ad_url);
         String comment = advideoCommentService.getComment(ad_url);
         model.addAttribute("detail",getAdvideoDetailList);
         model.addAttribute("comment",comment);
