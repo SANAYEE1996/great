@@ -5,12 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>채널 세부 정보 페이지</title>
 </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/plugins/wordCloud.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+<script th:inline = "javascript">
+    /*
+      <![CDATA[*/
+        let comment = /*[[${comment}]]*/ 'default';
+
+        let detail = /*[[${detail}]]*/ 'default';
+        var korean = 1-detail.foreign;
+        var foreign = detail.foreign;
+        var like = detail.likecnt;
+        var dislike = detail.dislike;
+      /*]]>
+    */
+</script>
+<style>
+    #graph{
+      vertical-align : middle;
+    }
+    #wordCloud {
+      width:500px;
+      height: 500px;
+    }
+</style>
 <body>
     <div th:replace="fragments/common :: header">여기 왜 헤더 안떠</div>
 
     <table border="0" width = "20%">
         <tr th:each = "a : ${detail}">
-            <img src="" alt="" width = "150px" height = "150px"><br>
             <td>
             이름 : <span th:text = "${a.name}"></span><br>
             업로드 날짜 : <span th:text = "${a.upday}"></span><br>
@@ -24,7 +50,16 @@
             </td>
         </tr>
     </table>
+    <div>
+        <canvas id="foreignRatio"></canvas>
+    </div>
+    <div>
+        <canvas id="likeRatio"></canvas>
+    </div>
+    <div id="wordCloud" ></div>
 
     <div th:replace="fragments/common :: footer">여기 왜 푸터 안떠</div>
 </body>
+<script src="/advideo/graph.js"></script>
+<script src="/advideo/wordCloud.js"></script>
 </html>
