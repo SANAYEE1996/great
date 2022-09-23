@@ -42,16 +42,11 @@ public class Crawling {
             int[] arr = {allTitle.size(), allLink.size(), allText.size()};
             Arrays.sort(arr);
             for(int i = 0; i < arr[0]; i++){
-                SearchResult sr = new SearchResult();
                 title = allTitle.get(i).text().toString();
                 link = allLink.get(i).attr("abs:href");
                 text = allText.get(i).text().toString();
                 freq = getFrequency(keyword,text);
-                sr.setTitle(title);
-                sr.setLink(link);
-                sr.setText(text);
-                sr.setFreq(freq);
-                list.add(sr);
+                list.add(new SearchResult(title, link, text, freq ));
             }
 
         }
