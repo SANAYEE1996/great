@@ -26,8 +26,8 @@ public class SearchController {
 
     @GetMapping("")
     public String searchPage() {
-        log.debug("기본 검색 화면");
-        log.trace("기본 검색 화면");
+        log.info("기본 검색 화면");
+        log.info("기본 검색 화면");
         return "search.html";
     }
 
@@ -37,6 +37,7 @@ public class SearchController {
         ArrayList<SearchResult> list = new ArrayList<>(craw.searchCrawling(keyword));
 
         keyword = "입력 받은 검색어 : " + keyword;
+        log.info("리스트 안되니? : {}",list);
         models.addAttribute("keyword", keyword);
         models.addAttribute("list",list);
 

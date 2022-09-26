@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -23,39 +22,34 @@ public class Crawling {
 
     public List<SearchResult> searchCrawling(String keyword){
         List<SearchResult> list = new ArrayList<>();
-        StringBuilder sb = new StringBuilder("https://www.google.com/search?q=");
-        sb.append(keyword);
-        sb.append("&oq=");
-        sb.append(keyword);
-        String url = sb.toString();
-        //System.out.println("받은 구글 검색 url : " +url);
+        String url = "https://www.google.com/search?q=" + keyword + "&oq=" + keyword;
+        log.info("받은 구글 검색 url : {}", url);
         Connection conn = Jsoup.connect(url);
-        String title = "";
-        String link = "";
-        String text = "";
-        int freq = 0;
+        String title;
+        String link;
+        String text;
+        int freq;
+        int minSize;
         try{
             Document document = conn.get();
             Elements allTitle = document.select("div.jtfYYd div.yuRUbf h3.LC20lb.MBeuO.DKV0Md");
             Elements allLink = document.select("div.jtfYYd div.yuRUbf>a");
             Elements allText = document.select("div.jtfYYd div.NJo7tc.Z26q7c.uUuwM");
-            int[] arr = {allTitle.size(), allLink.size(), allText.size()};
-            Arrays.sort(arr);
-            for(int i = 0; i < arr[0]; i++){
-                title = allTitle.get(i).text().toString();
+            minSize = Math.min(allText.size(),(Math.min(allTitle.size(), allLink.size())));
+            for(int i = 0; i < minSize; i++){
+                title = allTitle.get(i).text();
                 link = allLink.get(i).attr("abs:href");
-                text = allText.get(i).text().toString();
+                text = allText.get(i).text();
                 freq = getFrequency(keyword,text);
                 list.add(new SearchResult(title, link, text, freq ));
             }
-
         }
         catch(IOException e){
             e.printStackTrace();
         }
 
         for(SearchResult i : list){
-            log.debug("result : {}", i);
+            log.info("result : {}", i);
         }
 
 
