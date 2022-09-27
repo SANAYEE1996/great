@@ -36,12 +36,9 @@ public class SoundSearcherService {
         if(targetCharacter == searchCharacter) {
             return true;
         }
-        else if((isHangul(targetCharacter) || isInitialSound(targetCharacter))&&
+        else return (isHangul(targetCharacter) || isInitialSound(targetCharacter)) &&
                 (isHangul(searchCharacter) || isInitialSound(searchCharacter)) &&
-                getInitialSound(targetCharacter) == searchCharacter ){
-            return true;
-        }
-        return false;
+                getInitialSound(targetCharacter) == searchCharacter;
     }
 
     private int sameCount(String target, String search) {
