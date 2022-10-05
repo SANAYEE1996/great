@@ -19,65 +19,58 @@
     <h1>
         welcome Great Application!
     </h1>
-    <div class = "row">
-        <div class="col-md-12">
-            <div class="input-group" style="width:71%; margin:0 auto">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><img id = "icon"></img></span>
-                </div>
-                <div class="form-control" style=" height:auto">
-                    <strong>
-                        <img id="weather1" src="https://media.istockphoto.com/vectors/thin-out-line-red-pin-location-gps-icon-geometric-marker-flat-shape-vector-id1160934392?k=6&m=1160934392&s=170667a&w=0&h=lEoHfCzvvA8vNisLpCln9GygHFGdsaV8gWmj2zh9KrE="
-                             width="30px" height="23px" style="float:left; margin:0 0 0 45%;" >
-                        <div id="js_weather"></div>
-                        <div  style="text-align:center;">
-                            <div class = "now"></div>
-                            <div class="feel"></div>
-                            <div class="max_min_temp"></div>
-                            <div class = "status"></div>
-                            <div id = "sel"></div>
-                            <div class = "comment"></div>
-                            <div id= "sel2"></div>
-                        </div>
-                    </strong>
-                </div>
-            </div>
-        </div>
+    <div class="birth_validate_area">
+        <h3>생년 월일 검증하는 곳입니다.</h3>
+        <input name="birthday" type="text" maxlength="8">
     </div>
-    <canvas id="canvas" width="300" height="300"></canvas>
-
-    <script type="import">
-         {
-          "imports": {
-            "three": "https://unpkg.com/three@0.141.0/build...",
-            "GLTFLoader" : "https://unpkg.com/three@0.141.0/examp..."
-          }
-        }
-    </script>
-
-    <script type="module">
-        import {GLTFLoader} from 'GLTFLoader';
-        import * as THREE from 'three';
-
-        let scene = new THREE.Scene();
-        let renderer = new THREE.WebGLRenderer({
-            canvas : document.querySelector('#canvas')
-        });
-
-        let camera = new THREE.PerspectiveCamera(30,1);
-        camera.position.set(0,0,0);
-
-        let loader = new GLTFLoader();
-        loader.load('walkingCat.gltf', function(gltf){
-            scene.add(gltf.scene);
-            renderer.render(scene,camera);
-        });
-
-
-    </script>
-    <script src="./js/weather.js"></script>
-
 
     <div th:replace="fragments/common :: footer">여기 왜 푸터 안떠</div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    var inputBirth = '19690229';
+    var nowDate = new Date();
+    var nowYear = nowDate.getFullYear().toString();
+    var nowMonth = (nowDate.getMonth() + 1).toString();
+    var nowDay = (10 > nowDate.getDate()) ? '0' + nowDate.getDate().toString() : nowDate.getDate().toString();
+    var nowTime = nowYear + nowMonth + nowDay;
+    console.log('현재 시간 : ' , nowTime);
+    console.log(inputBirth, '이 생일이 맞나요? ', isBirthDay(inputBirth));
+
+    function isBirthDay(dateStr){
+        var year = Number(dateStr.substr(0,4));
+        var month = Number(dateStr.substr(4,2));
+        var day = Number(dateStr.substr(6,2));
+
+        if(1900 > year){
+            console.log('생년이 말도 안됩니다.');
+            return false;
+        }
+        else if(month < 1 || month > 12){
+            console.log('월이 말도 안됩니다.');
+            return false;
+        }
+        else if(day < 1 || day > 31){
+            console.log('일이 말도 안됩니다.');
+            return false;
+        }
+        else if((month == 4 || month == 6 || month == 9 || month == 11) && (day == 31)){
+            console.log('4 , 6 , 9 , 11 월은 끝 일이 30일입니다.');
+            return false;
+        }
+        else if(month == 2 && (day > 29 || (day == 29 && !isLeafYear(year)))){
+            console.log(year,'은 윤년이 아닙니다.');
+            return false;
+        }
+        else if(dateStr > nowTime){
+            console.log('금일 보다 더 생년월일이 느릴 수 없습니다');
+            return false;
+        }
+        return true;
+    };
+
+    function isLeafYear(year){
+        return (year % 4 == 0 && ( year % 100 != 0 || year % 400 == 0 ));
+    };
+</script>
 </html>
