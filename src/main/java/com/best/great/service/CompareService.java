@@ -21,7 +21,10 @@ public class CompareService {
 
     @Autowired
     SoundSearcherService soundSearcherService;
-
+    /*
+    *  수정 필요
+    *
+    * */
     public List<Channel> getSearchResult(String searchString){
         List<Channel> exam = channelRepository.findAll();
         int i = 0;
