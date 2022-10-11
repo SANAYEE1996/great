@@ -79,6 +79,7 @@ public class ChannelController {
 
         List<Channel> getList = compareService.getSearchResult(initial_sound);
         log.info("결과 : {}", getList);
+        model.addAttribute("searchString",initial_sound);
         model.addAttribute("list",getList);
 
         return "youtube/channelSearchList";
