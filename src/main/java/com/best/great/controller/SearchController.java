@@ -36,7 +36,6 @@ public class SearchController {
 
         ArrayList<SearchResult> list = new ArrayList<>(craw.searchCrawling(keyword));
 
-        keyword = "입력 받은 검색어 : " + keyword;
         log.info("리스트 안되니? : {}",list);
         models.addAttribute("keyword", keyword);
         models.addAttribute("list",list);

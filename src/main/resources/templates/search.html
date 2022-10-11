@@ -29,10 +29,17 @@
            name="submit" value="submit">
 </form>
 
-<span th:text = "${keyword}"></span>
+<div>입력 받은 검색어 : <span th:text = "${keyword}"></span></div>
 
 <table border="1">
-    <tr>
+    <tr th:if="${list.empty}">
+        <td>
+            <div>
+                <span th:text = "${keyword}"></span> 에 해당되는 검색 결과가 없습니다.
+            </div>
+        </td>
+    </tr>
+    <tr th:unless="${list.empty}">
         <th> 타이틀 </th>
         <th></th>
         <th> 링크 </th>
