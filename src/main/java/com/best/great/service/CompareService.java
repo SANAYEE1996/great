@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,22 +22,17 @@ public class CompareService {
 
     @Autowired
     SoundSearcherService soundSearcherService;
-    /*
-    *  수정 필요
-    *
-    * */
+
     public List<Channel> getSearchResult(String searchString){
         List<Channel> exam = channelRepository.findAll();
-        int i = 0;
-        while(i < exam.size()){
-            if(!soundSearcherService.isMatch(exam.get(i).getCh_name(),searchString)){
-                exam.remove(i);
-                continue;
+        List<Channel> getSearchResultList = new ArrayList<>();
+        for(int i=0; i < exam.size(); i++){
+            if(soundSearcherService.isMatch(exam.get(i).getCh_name(),searchString)){
+                getSearchResultList.add(exam.get(i));
             }
-            i++;
         }
-        log.info("가져 온 것 : {}",exam );
-        return exam;
+        log.info("가져 온 것 : {}",getSearchResultList );
+        return getSearchResultList;
     }
 
 
