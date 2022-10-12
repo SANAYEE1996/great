@@ -24,6 +24,12 @@ public class Crawling {
         List<SearchResult> list = new ArrayList<>();
         String url = "https://www.google.com/search?q=" + keyword + "&oq=" + keyword;
         log.info("받은 구글 검색 url : {}", url);
+        putSearchResultToList(keyword,url,list);
+        printListLogToCheck(list);
+        return list;
+    }
+
+    private void putSearchResultToList(String keyword,String url, List<SearchResult> list){
         Connection conn = Jsoup.connect(url);
         String title;
         String link;
@@ -47,18 +53,9 @@ public class Crawling {
         catch(IOException e){
             e.printStackTrace();
         }
-
-        for(SearchResult i : list){
-            log.info("result : {}", i);
-        }
-
-
-        return list;
     }
 
-
-
-    public static int getFrequency(String keyword, String text){
+    private int getFrequency(String keyword, String text){
         int count = 0;
         int size = keyword.length();
         for(int i = 0; i < text.length()-size; i++){
@@ -67,8 +64,12 @@ public class Crawling {
                 i+=size;
             }
         }
-
-
         return count;
+    }
+
+    private void printListLogToCheck(List<SearchResult> list){
+        for(SearchResult i : list){
+            log.info("result : {}", i);
+        }
     }
 }
