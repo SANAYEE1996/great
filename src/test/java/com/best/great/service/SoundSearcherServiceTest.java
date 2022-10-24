@@ -1,5 +1,6 @@
 package com.best.great.service;
 
+import com.best.great.util.SoundSearcher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,11 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 public class SoundSearcherServiceTest {
 
-    private SoundSearcherService soundsearcher;
+    private SoundSearcher soundsearcher;
 
     @BeforeEach
     public void setup(){
-        soundsearcher = new SoundSearcherService();
+        soundsearcher = new SoundSearcher();
     }
 
     @Test

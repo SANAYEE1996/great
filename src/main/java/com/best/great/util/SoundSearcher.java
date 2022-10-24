@@ -1,9 +1,9 @@
-package com.best.great.service;
+package com.best.great.util;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class SoundSearcherService {
+public class SoundSearcher {
 
     private static final char HANGUL_BEGIN_UNICODE = 44032; // 가
 
