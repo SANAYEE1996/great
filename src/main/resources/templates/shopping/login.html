@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="./fragments/common :: html-head">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Great</title>
 </head>
 <style>
 .login_box{
@@ -11,11 +12,57 @@
     justify-content : center;
     align-items : center;
 }
+.buyer_login_box, .seller_login_box{
+    width: 30%;
+    text-align: center;
+    font-size: 30px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #FF0000;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.buyer_login_box{
+    margin-right: 10px;
+}
+.seller_login_box{
+    margin-left: 10px;
+}
 </style>
+<script>
+$('#buyer_login_box').click(function(){
+    
+    $('#buyer_login').slideDown();
+});
+$('#seller_login_box').click(function(){
+    
+    $('#buyer_login').slideDown();
+});
+</script>
 <body>
-<div class="login_box">
-    <div>구매자 로그인</div>
-    <div>판매자 로그인</div>
-</div>
+    <div class="login_box">
+        <div id="buyer_login_box" class="buyer_login_box">
+            <span>구매자 로그인</span>
+            <div id="buyer_login" class="buyer_login">
+                <form th:action="@{/account/login}" method="post">
+                    <div><label> User Name : <input type="text" name="username"/> </label></div>
+                    <div><label> Password: <input type="password" name="password"/> </label></div>
+                    <div><input type="submit" value="buyer"/></div>
+                </form>
+            </div>
+        </div>
+        <div id="seller_login_box" class="seller_login_box">
+            <span>판매자 로그인</span>
+            <div id="seller_login" class="seller_login">
+                <form th:action="@{/account/login}" method="post">
+                    <div><label> User Name : <input type="text" name="username"/> </label></div>
+                    <div><label> Password: <input type="password" name="password"/> </label></div>
+                    <div><input type="submit" value="seller"/></div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
