@@ -18,6 +18,7 @@
     font-size: 30px;
     padding: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     border: 1px solid #FF0000;
@@ -30,36 +31,38 @@
 .seller_login_box{
     margin-left: 10px;
 }
+.buyer_login, .seller_login{
+    display : none;
+}
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-$('#buyer_login_box').click(function(){
-    
-    $('#buyer_login').slideDown();
-});
-$('#seller_login_box').click(function(){
-    
-    $('#buyer_login').slideDown();
-});
+function goBuyerLoginPage(){
+    $('#buyer_login').slideToggle();
+};
+function goSellerLoginPage(){
+    $('#seller_login').slideToggle();
+};
 </script>
 <body>
     <div class="login_box">
-        <div id="buyer_login_box" class="buyer_login_box">
+        <div id="buyer_login_box" class="buyer_login_box" onclick="goBuyerLoginPage();">
             <span>구매자 로그인</span>
             <div id="buyer_login" class="buyer_login">
                 <form th:action="@{/account/login}" method="post">
                     <div><label> User Name : <input type="text" name="username"/> </label></div>
                     <div><label> Password: <input type="password" name="password"/> </label></div>
-                    <div><input type="submit" value="buyer"/></div>
+                    <div><input type="submit" value="Login"/></div>
                 </form>
             </div>
         </div>
-        <div id="seller_login_box" class="seller_login_box">
+        <div id="seller_login_box" class="seller_login_box" onclick="goSellerLoginPage();">
             <span>판매자 로그인</span>
             <div id="seller_login" class="seller_login">
                 <form th:action="@{/account/login}" method="post">
                     <div><label> User Name : <input type="text" name="username"/> </label></div>
                     <div><label> Password: <input type="password" name="password"/> </label></div>
-                    <div><input type="submit" value="seller"/></div>
+                    <div><input type="submit" value="Login"/></div>
                 </form>
             </div>
         </div>
