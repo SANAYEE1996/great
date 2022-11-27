@@ -49,7 +49,7 @@ function goSellerLoginPage(){
         <div id="buyer_login_box" class="buyer_login_box" onclick="goBuyerLoginPage();">
             <span>구매자 로그인</span>
             <div id="buyer_login" class="buyer_login">
-                <form th:action="@{/main}" method="post">
+                <form th:action="@{/buyer}" method="post">
                     <div><label> User Name : <input type="text" name="username"/> </label></div>
                     <div><label> Password: <input type="password" name="password"/> </label></div>
                     <div><input type="submit" value="Login"/></div>
