@@ -36,3 +36,5 @@ spring batch
 
 jpa 시작
 
+이커머스 찌끄레기
+
