@@ -8,4 +8,6 @@ public class Product {
     private String name;
     private long price;
     private int count;
+
+    private long seller_id;
 }
