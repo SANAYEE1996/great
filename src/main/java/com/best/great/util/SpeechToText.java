@@ -3,6 +3,7 @@ package com.best.great.util;
 import com.google.gson.Gson;
 
 import java.io.DataOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -14,21 +15,46 @@ import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 
-public class STT {
-    static public void main ( String[] args ) {
-        String openApiURL = "http://aiopen.etri.re.kr:8000/WiseASR/Recognition";
-        String accessKey = "blind";    // 발급받은 API Key
-        String languageCode = "korean";     // 언어 코드
-        String audioFilePath = "path";  // 녹음된 음성 파일 경로
-        String audioContents = null;
+public class SpeechToText {
+    private final String openApiURL = "http://aiopen.etri.re.kr:8000/WiseASR/Recognition";
+    private String accessKey;    // 발급받은 API Key
+    private String languageCode;
+    private String audioFilePath;
+    private Integer responseCode = null;
+    private String responBody = null;
+    private String speechToTextValue = "";
 
-        Gson gson = new Gson();
+    public SpeechToText(String PropertiesPath) {
+        Properties properties = new Properties();
+        try {
+            properties.load(new FileInputStream(PropertiesPath));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        this.accessKey = properties.getProperty("api_key");
+    }
+
+    public String getText(String languageCode, String audioFilePath) {
+        this.languageCode = languageCode;
+        this.audioFilePath = audioFilePath;
 
         Map<String, Object> request = new HashMap<>();
         Map<String, String> argument = new HashMap<>();
 
+        defaultSetting(request, argument);
+        requestAPI(request);
+
+        int objectIndex = responBody.indexOf("recognized");
+        speechToTextValue = responBody.substring(objectIndex+13).replaceAll("\\}|\"", "");
+        System.out.println("response Code : " +responseCode);
+        return speechToTextValue;
+    }
+
+    private void defaultSetting(Map<String, Object> request, Map<String, String> argument) {
+        String audioContents = null;
         try {
             Path path = Paths.get(audioFilePath);
             byte[] audioBytes = Files.readAllBytes(path);
@@ -36,15 +62,17 @@ public class STT {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         argument.put("language_code", languageCode);
         argument.put("audio", audioContents);
 
         request.put("argument", argument);
+    }
 
+    private void requestAPI(Map<String, Object> request) {
+        Gson gson = new Gson();
         URL url;
-        Integer responseCode = null;
-        String responBody = null;
+        responseCode = null;
+        responBody = null;
         try {
             url = new URL(openApiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -57,24 +85,12 @@ public class STT {
             wr.write(gson.toJson(request).getBytes("UTF-8"));
             wr.flush();
             wr.close();
-            System.out.println("under Code Do Not Work ..zzz");
+
             responseCode = con.getResponseCode();
             InputStream is = con.getInputStream();
             byte[] buffer = new byte[is.available()];
-            int byteRead = is.read(buffer);
+            is.read(buffer);
             responBody = new String(buffer);
-
-            System.out.println("[responseCode] " + responseCode);
-            System.out.println("[responBody]");
-            System.out.println(responBody);
-            String[] bodyArray = responBody.split(",");
-            String[] bodyContentArray;
-            for(int i = 0; i < bodyArray.length; i++) {
-                bodyContentArray = bodyArray[i].split(":");
-//            	System.out.println(bodyContentArray[0] + " " +bodyContentArray[1]);
-                System.out.println(bodyArray[i]);
-            }
-
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
