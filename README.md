@@ -38,3 +38,4 @@ jpa 시작
 
 이커머스 찌끄레기
 
+aws - rds - tb.t3.micro
