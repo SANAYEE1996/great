@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class CrawlingTest {
 
     private Crawling crawling;
@@ -19,9 +21,9 @@ public class CrawlingTest {
 
     @Test
     public void testCase01(){
-        List<SearchResult> list = new ArrayList<>();
-        list = crawling.searchCrawling("google");
-
+        List<SearchResult> list = crawling.searchCrawling("google");
+        assertEquals("",list.get(0));
+        System.out.println(list.get(0));
     }
 
 }
