@@ -1,4 +1,4 @@
-package com.best.great.shopping.entity;
+package com.best.great.shopping.entity.customer;
 
 import lombok.Data;
 
