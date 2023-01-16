@@ -18,10 +18,10 @@ public class CompareService {
     private static final Logger log = LoggerFactory.getLogger(CompareService.class);
 
     
-    @Autowired
+
     ChannelRepository channelRepository;
 
-    @Autowired
+
     SoundSearcher soundSearcherService;
 
     public List<Channel> getSearchResult(String searchString){

@@ -15,7 +15,7 @@ public class ChannelService {
 
     private static final Logger log = LoggerFactory.getLogger(ChannelService.class);
 
-    @Autowired
+
     ChannelRepository channelRepository;
 
     public Page<Channel> getChannelList(Pageable pageable){

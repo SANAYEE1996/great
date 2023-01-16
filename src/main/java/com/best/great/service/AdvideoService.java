@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class AdvideoService {
     private static final Logger log = LoggerFactory.getLogger(AdvideoService.class);
 
-    @Autowired
+
     AdvideoRepository advideoRepository;
 
     public Page<Advideo> getAdvideoList(String ch_url,Pageable pageable){
