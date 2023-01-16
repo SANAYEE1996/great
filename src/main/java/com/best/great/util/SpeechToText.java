@@ -7,8 +7,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,13 +19,11 @@ import java.util.Properties;
 
 
 public class SpeechToText {
-    private final String openApiURL = "http://aiopen.etri.re.kr:8000/WiseASR/Recognition";
-    private String accessKey;    // 발급받은 API Key
+    private final String accessKey;    // 발급받은 API Key
     private String languageCode;
     private String audioFilePath;
     private Integer responseCode = null;
     private String responBody = null;
-    private String speechToTextValue = "";
 
     public SpeechToText(String PropertiesPath) {
         Properties properties = new Properties();
@@ -48,7 +46,7 @@ public class SpeechToText {
         requestAPI(request);
 
         int objectIndex = responBody.indexOf("recognized");
-        speechToTextValue = responBody.substring(objectIndex+13).replaceAll("\\}|\"", "");
+        String speechToTextValue = responBody.substring(objectIndex + 13).replaceAll("\\}|\"", "");
         System.out.println("response Code : " +responseCode);
         return speechToTextValue;
     }
@@ -74,6 +72,7 @@ public class SpeechToText {
         responseCode = null;
         responBody = null;
         try {
+            String openApiURL = "https://aiopen.etri.re.kr:8000/WiseASR/Recognition";
             url = new URL(openApiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
             con.setRequestMethod("POST");
@@ -82,7 +81,7 @@ public class SpeechToText {
             con.setRequestProperty("Authorization", accessKey);
 
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-            wr.write(gson.toJson(request).getBytes("UTF-8"));
+            wr.write(gson.toJson(request).getBytes(StandardCharsets.UTF_8));
             wr.flush();
             wr.close();
 
@@ -91,8 +90,6 @@ public class SpeechToText {
             byte[] buffer = new byte[is.available()];
             is.read(buffer);
             responBody = new String(buffer);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -2,7 +2,6 @@ package com.best.great.service;
 
 import com.best.great.entity.Board;
 import com.best.great.repository.BoardRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,8 +18,8 @@ public class BoardService {
     }
 
 
-    public Board save(Board board){
+    public void save(Board board){
 
-        return boardRepository.save(board);
+        boardRepository.save(board);
     }
 }

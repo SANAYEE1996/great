@@ -1,7 +1,6 @@
 package com.best.great.service;
 
 import com.best.great.repository.AdvideoCommentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
