@@ -24,7 +24,6 @@ import java.util.List;
 @RequestMapping("/channel")
 public class ChannelController {
 
-    private static final Logger log = LoggerFactory.getLogger(ChannelController.class);
 
     @Autowired
     ChannelService channelService;
@@ -41,7 +40,6 @@ public class ChannelController {
         int startPage = Math.max(1,channels.getPageable().getPageNumber()-10);
         int endPage = Math.min(channels.getTotalPages(),channels.getPageable().getPageNumber()+10);
 
-        log.info("채널 페이지");
 
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
@@ -59,10 +57,6 @@ public class ChannelController {
         int startPage = Math.max(1,list.getPageable().getPageNumber()-5);
         int endPage = Math.min(list.getTotalPages(),list.getPageable().getPageNumber()+5);
 
-        log.info("channel detail information : {} ", channel);
-        log.info("channel img : {} ", img);
-        log.info("갔다오긴 했나요?");
-        log.info("채널 URL : {} ", ch_url);
 
         model.addAttribute("imgUrl", img);
         model.addAttribute("detail", channel);
@@ -78,7 +72,7 @@ public class ChannelController {
     public String filterPage(Model model,@RequestParam("initial_sound") String initial_sound){
 
         List<Channel> getList = compareService.getSearchResult(initial_sound);
-        log.info("결과 : {}", getList);
+
         model.addAttribute("searchString",initial_sound);
         model.addAttribute("list",getList);
 

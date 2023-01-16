@@ -3,8 +3,6 @@ package com.best.great.controller;
 
 import com.best.great.entity.SearchResult;
 import com.best.great.service.Crawling;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,15 +17,12 @@ import java.util.ArrayList;
 @RequestMapping("/search")
 public class SearchController {
 
-    private static final Logger log = LoggerFactory.getLogger(SearchController.class);
 
     @Autowired
     public Crawling craw;
 
     @GetMapping("")
     public String searchPage() {
-        log.info("기본 검색 화면");
-        log.info("기본 검색 화면");
         return "search.html";
     }
 
@@ -36,7 +31,6 @@ public class SearchController {
 
         ArrayList<SearchResult> list = new ArrayList<>(craw.searchCrawling(keyword));
 
-        log.info("리스트 안되니? : {}",list);
         models.addAttribute("keyword", keyword);
         models.addAttribute("list",list);
 
