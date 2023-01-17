@@ -3,7 +3,6 @@ package com.best.great.controller;
 import com.best.great.entity.Board;
 import com.best.great.service.BoardService;
 import com.best.great.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -18,11 +17,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/board")
 public class BoardController {
 
-    @Autowired
-    BoardService boardService;
 
-    @Autowired
-    UserService userService;
+    private final BoardService boardService;
+
+
+    private final UserService userService;
+
+    public BoardController(BoardService boardService, UserService userService) {
+        this.boardService = boardService;
+        this.userService = userService;
+    }
 
 
     @GetMapping("/list")

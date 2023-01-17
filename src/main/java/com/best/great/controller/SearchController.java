@@ -3,7 +3,6 @@ package com.best.great.controller;
 
 import com.best.great.entity.SearchResult;
 import com.best.great.service.Crawling;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +17,12 @@ import java.util.ArrayList;
 public class SearchController {
 
 
-    @Autowired
-    public Crawling craw;
+
+    private final Crawling craw;
+
+    public SearchController(Crawling craw) {
+        this.craw = craw;
+    }
 
     @GetMapping("")
     public String searchPage() {

@@ -5,9 +5,6 @@ import com.best.great.entity.Channel;
 import com.best.great.service.AdvideoService;
 import com.best.great.service.ChannelService;
 import com.best.great.service.CompareService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -25,14 +22,20 @@ import java.util.List;
 public class ChannelController {
 
 
-    @Autowired
-    ChannelService channelService;
 
-    @Autowired
-    CompareService compareService;
+    private final ChannelService channelService;
 
-    @Autowired
-    AdvideoService advideoService;
+
+    private final CompareService compareService;
+
+
+    private final AdvideoService advideoService;
+
+    public ChannelController(ChannelService channelService, CompareService compareService, AdvideoService advideoService) {
+        this.channelService = channelService;
+        this.compareService = compareService;
+        this.advideoService = advideoService;
+    }
 
     @GetMapping("/list")
     public String list(Model model, @PageableDefault(size = 10)Pageable pageable){
