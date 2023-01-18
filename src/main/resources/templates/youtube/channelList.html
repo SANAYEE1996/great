@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="./fragments/common :: html-head">
+<head th:replace="fragments/common :: html-head">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>채널 리스트</title>
@@ -59,7 +59,7 @@
                 <a class="page-link">Previous</a>
             </li>
             <li class="page-item" th:each="i : ${#numbers.sequence(startPage, endPage)}">
-                <a class="page-link" th:href="@{/channel/list(page=${i-1})}" th:text="${i}">1</a>
+                <a class="page-link" th:href="@{/channel/list(page=${i})}" th:text="${i}">1</a>
             </li>
             <li class="page-item">
                 <a class="page-link" href="#">Next</a>
