@@ -64,8 +64,6 @@ dependencies {
 	/*코드 변경 바로 실행 위함*/
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
-	/*gson*/
-	implementation 'com.google.code.gson:gson:2.10'
 }
 
 tasks.named('test') {
