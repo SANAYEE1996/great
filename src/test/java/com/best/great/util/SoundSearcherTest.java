@@ -52,7 +52,6 @@ public class SoundSearcherTest {
         soundsearcher.isMatch(line, "ㅂㅇㅅ");
         end = System.nanoTime();
         BigDecimal time = BigDecimal.valueOf(((double) (end - start)) / 1000000000);
-        System.out.println(time);
         assertTimeoutPreemptively(Duration.ofMillis(end-start), () -> Thread.sleep(1));
     }
 

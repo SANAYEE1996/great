@@ -2,6 +2,7 @@ package com.best.great.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CompareServiceTest {
 
@@ -14,6 +15,6 @@ public class CompareServiceTest {
 
     @Test
     public void testCase01(){
-        System.out.println(cs.getSearchResult("ㅇㅇㄱ"));
+        assertEquals(17,cs.getSearchResult("ㅇㅇㄱ").size());
     }
 }
