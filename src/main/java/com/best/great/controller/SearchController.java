@@ -3,20 +3,13 @@ package com.best.great.controller;
 
 import com.best.great.entity.SearchResult;
 import com.best.great.service.Crawling;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
-@Controller
+@RestController
 @RequestMapping("/search")
 public class SearchController {
-
-
 
     private final Crawling craw;
 
@@ -24,21 +17,10 @@ public class SearchController {
         this.craw = craw;
     }
 
-    @GetMapping("")
-    public String searchPage() {
-        return "search.html";
-    }
 
-    @RequestMapping(value = "/result", method = RequestMethod.POST)
-    public String search(@RequestParam("keyword") String keyword, Model models){
-
-        ArrayList<SearchResult> list = new ArrayList<>(craw.searchCrawling(keyword));
-
-        models.addAttribute("keyword", keyword);
-        models.addAttribute("list",list);
-
-
-        return "search.html";
+    @PostMapping(value = "/result")
+    public ArrayList<SearchResult> search(@RequestParam("keyword") String keyword){
+        return new ArrayList<>(craw.searchCrawling(keyword));
     }
 
 }
