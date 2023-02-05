@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity(name = "advideo")
-@Data
 public class Advideo {
 
     @Id

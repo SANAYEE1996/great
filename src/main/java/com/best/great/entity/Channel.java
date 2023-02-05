@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity(name = "channel")
-@Data
 public class Channel {
 
     @Id

@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "role")
-@Data
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
