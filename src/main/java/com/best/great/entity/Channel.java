@@ -1,11 +1,12 @@
 package com.best.great.entity;
 
-import lombok.Data;
+import lombok.Getter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity(name = "channel")
+@Getter
 public class Channel {
 
     @Id

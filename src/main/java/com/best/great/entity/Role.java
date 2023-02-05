@@ -1,12 +1,13 @@
 package com.best.great.entity;
 
 
-import lombok.Data;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "role")
+@Setter
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
