@@ -15,12 +15,7 @@ import java.util.List;
 public class CompareService {
 
     private static final Logger log = LoggerFactory.getLogger(CompareService.class);
-
-    
-
     ChannelRepository channelRepository;
-
-
     SoundSearcher soundSearcherService;
 
     public List<Channel> getSearchResult(String searchString){
