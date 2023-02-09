@@ -15,7 +15,11 @@ public class ChannelService {
     private static final Logger log = LoggerFactory.getLogger(ChannelService.class);
 
 
-    ChannelRepository channelRepository;
+    private final ChannelRepository channelRepository;
+
+    public ChannelService(ChannelRepository channelRepository){
+        this.channelRepository = channelRepository;
+    }
 
     public Page<Channel> getChannelList(Pageable pageable){
         log.info("현재 페이지 사이즈 : {} // 현재 페이지 넘버 : {}",pageable.getPageSize(),pageable.getPageNumber());
@@ -23,10 +27,7 @@ public class ChannelService {
     }
 
     public Channel getChannelDetail(String url){
-        if(channelRepository.findById(url).isPresent()){
-            return channelRepository.findById(url).get();
-        }
-        return new Channel();
+        return channelRepository.getChannelByChannelUrl(url);
     }
 
 
