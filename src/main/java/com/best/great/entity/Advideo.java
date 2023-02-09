@@ -1,18 +1,21 @@
 package com.best.great.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import lombok.Getter;
+
+import javax.persistence.*;
 
 @Entity(name = "advideo")
+@Getter
 public class Advideo {
 
-    @Id
-    @Column(name = "ad_url")
-    private String ad_url;
 
-    private String channelUrl;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "ad_url")
+    private String adUrl;
+
     private String name;
     private String upday;
     private String category;
@@ -27,4 +30,8 @@ public class Advideo {
 
     @OneToOne(mappedBy = "advideo")
     private AdvideoComment advideoComment;
+
+    @ManyToOne
+    @JoinColumn(name = "channelUrl")
+    private Channel channel;
 }
