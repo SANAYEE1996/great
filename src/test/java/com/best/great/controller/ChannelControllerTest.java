@@ -1,6 +1,5 @@
 package com.best.great.controller;
 
-import com.best.great.entity.Channel;
 import com.best.great.service.ChannelService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +33,7 @@ public class ChannelControllerTest {
 
     @BeforeEach
     public void createController(){
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(channelController).build();
     }
 
