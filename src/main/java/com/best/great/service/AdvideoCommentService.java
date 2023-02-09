@@ -9,9 +9,9 @@ public class AdvideoCommentService {
 
     AdvideoCommentRepository advideoCommentRepository;
 
-    public String getComment(String url){
-        if(advideoCommentRepository.findById(url).isPresent()){
-            return advideoCommentRepository.findById(url).get().getComment();
+    public String getComment(Long id){
+        if(advideoCommentRepository.findById(id).isPresent()){
+            return advideoCommentRepository.findById(id).get().getComment();
         }
         return "";
     }

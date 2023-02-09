@@ -1,15 +1,17 @@
 package com.best.great.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import lombok.Getter;
+
+import javax.persistence.*;
 
 @Entity(name = "adcomment")
+@Getter
 public class AdvideoComment {
 
     @Id
-    private String url;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "comment_id")
+    private String commentId;
 
     private String comment;
 

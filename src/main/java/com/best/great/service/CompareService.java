@@ -26,7 +26,6 @@ public class CompareService {
                 getSearchResultList.add(channel);
             }
         }
-        exam.clear(); //초기화 ? 굳이?
         log.info("가져 온 것 : {}",getSearchResultList );
         return getSearchResultList;
     }
