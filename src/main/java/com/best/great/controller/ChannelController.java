@@ -46,9 +46,7 @@ public class ChannelController {
 
     @GetMapping("/detail/ad/list")
     public Page<Advideo> getChannelAdVideoList(@RequestParam("channelUrl") String ch_url, @PageableDefault(size = 5)Pageable pageable){
-        //int startPage = Math.max(1,list.getPageable().getPageNumber()-5);
-        //int endPage = Math.min(list.getTotalPages(),list.getPageable().getPageNumber()+5);
-        return advideoService.getAdvideoList(ch_url, pageable);
+        return advideoService.getAdvideoList(channelService.getChannelDetail(ch_url), pageable);
     }
 
     @PostMapping("/search")

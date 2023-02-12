@@ -21,10 +21,8 @@ public class AdvideoService {
         this.advideoRepository = advideoRepository;
     }
 
-    public Page<Advideo> getAdvideoList(String ch_url,Pageable pageable){
+    public Page<Advideo> getAdvideoList(Channel targetChannel,Pageable pageable){
         log.info("광고 영상 리스트 현재 페이지 : {}", pageable.getPageNumber());
-        ChannelService channelService = null;
-        Channel targetChannel = channelService.getChannelDetail(ch_url);
         return advideoRepository.findAllByChannel(targetChannel, pageable);
     }
 
