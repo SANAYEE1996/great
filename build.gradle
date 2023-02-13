@@ -38,8 +38,8 @@ dependencies {
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:3.0.6'
 
 	/*security*/
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.security:spring-security-test'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	implementation 'org.springframework.security:spring-security-test'
 
 	/*login logout role show hide*/
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'

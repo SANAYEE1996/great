@@ -38,7 +38,7 @@ public class BoardController {
 
     @PostMapping("/write")
     public void write(Board board){
-        board.setUsername(userService.getUsername());
+//        board.setUsername(userService.getUsername());
         boardService.save(board);
     }
 
