@@ -27,6 +27,7 @@ public class ChannelService {
     }
 
     public Channel getChannelDetail(String url){
+
         return channelRepository.getChannelByChannelUrl(url);
     }
 

@@ -15,12 +15,17 @@ import java.util.List;
 public class CompareService {
 
     private static final Logger log = LoggerFactory.getLogger(CompareService.class);
-    ChannelRepository channelRepository;
-    SoundSearcher soundSearcherService;
+    private final ChannelRepository channelRepository;
+    private SoundSearcher soundSearcherService;
+
+    public CompareService(ChannelRepository channelRepository){
+        this.channelRepository = channelRepository;
+    }
 
     public List<Channel> getSearchResult(String searchString){
         List<Channel> exam = channelRepository.findAll();
         List<Channel> getSearchResultList = new ArrayList<>();
+        soundSearcherService = new SoundSearcher();
         for (Channel channel : exam) {
             if (soundSearcherService.isMatch(channel.getCh_name(), searchString)) {
                 getSearchResultList.add(channel);
