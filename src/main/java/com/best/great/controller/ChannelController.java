@@ -8,6 +8,8 @@ import com.best.great.service.AdvideoService;
 import com.best.great.service.ChannelService;
 import com.best.great.service.CompareService;
 import com.best.great.util.DtoConverter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +20,9 @@ import java.util.List;
 @RequestMapping("/channel")
 public class ChannelController {
 
+    private static final Logger log = LoggerFactory.getLogger(ChannelController.class);
 
+    private final DtoConverter dtoConverter;
 
     private final ChannelService channelService;
 
@@ -28,7 +32,8 @@ public class ChannelController {
 
     private final AdvideoService advideoService;
 
-    public ChannelController(ChannelService channelService, CompareService compareService, AdvideoService advideoService) {
+    public ChannelController(DtoConverter dtoConverter, ChannelService channelService, CompareService compareService, AdvideoService advideoService) {
+        this.dtoConverter = dtoConverter;
         this.channelService = channelService;
         this.compareService = compareService;
         this.advideoService = advideoService;
@@ -39,24 +44,25 @@ public class ChannelController {
         //int startPage = Math.max(1,channels.getPageable().getPageNumber()-10);
         //int endPage = Math.min(channels.getTotalPages(),channels.getPageable().getPageNumber()+10);
         List<Channel> channelList = channelService.getChannelList(pageable).toList();
-        return new DtoConverter().toChannelDtoList(channelList);
+        return dtoConverter.toChannelDtoList(channelList);
     }
 
     @GetMapping("/detail/info")
     public ChannelDto getChanneldetailInfo(@RequestParam("channelUrl") String ch_url){
         Channel channel = channelService.getChannelDetail(ch_url);
-        return new DtoConverter().toChannelDto(channel);
+        return dtoConverter.toChannelDto(channel);
     }
 
     @GetMapping("/detail/ad/list")
     public List<AdvideoDto> getChannelAdVideoList(@RequestParam("channelUrl") String ch_url, @PageableDefault(size = 5)Pageable pageable){
         List<Advideo> advideoList = advideoService.getAdvideoList(channelService.getChannelDetail(ch_url), pageable);
-        return new DtoConverter().toAdvideoDtoList(advideoList);
+        log.info("list : {}", advideoList);
+        return dtoConverter.toAdvideoDtoList(advideoList);
     }
 
     @PostMapping("/search")
     public List<ChannelDto> filterPage(@RequestParam("keyword") String initial_sound){
         List<Channel> channelList = compareService.getSearchResult(initial_sound);
-        return new DtoConverter().toChannelDtoList(channelList);
+        return dtoConverter.toChannelDtoList(channelList);
     }
 }

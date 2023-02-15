@@ -25,6 +25,8 @@ public class AdvideoService {
 
     public List<Advideo> getAdvideoList(Channel targetChannel, Pageable pageable){
         log.info("광고 영상 리스트 현재 페이지 : {}", pageable.getPageNumber());
+        log.info("찾으려는 채널 주인 URL : {}",targetChannel.getChannelUrl());
+        log.info("찾으려는 채널 주인 이름 : {}",targetChannel.getCh_name());
         return advideoRepository.findAllByChannel(targetChannel, pageable).toList();
     }
 

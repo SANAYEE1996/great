@@ -4,10 +4,11 @@ import com.best.great.dto.AdvideoDto;
 import com.best.great.dto.ChannelDto;
 import com.best.great.entity.Advideo;
 import com.best.great.entity.Channel;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class DtoConverter {
     public ChannelDto toChannelDto(Channel channel){
         return new ChannelDto(channel.getId(),channel.getChannelUrl(),channel.getMonthView(),channel.getCh_name(),channel.getSub(),channel.getRegdate(),channel.getTotview(),channel.getCategory(),channel.getContact(),channel.getFan(),channel.getInsta(),channel.getUpload(),channel.getImg(),channel.getTag(),channel.getClust(),channel.getAdavgview(),channel.getAdcount());
