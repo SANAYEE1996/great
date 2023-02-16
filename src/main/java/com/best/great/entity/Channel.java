@@ -13,7 +13,7 @@ public class Channel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "channelUrl")
+    @Column(name = "channel_url")
     private String channelUrl;
 
     private int monthView;

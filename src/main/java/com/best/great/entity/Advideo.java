@@ -31,7 +31,7 @@ public class Advideo {
     @OneToOne(mappedBy = "advideo")
     private AdvideoComment advideoComment;
 
-    @ManyToOne
-    @JoinColumn(name = "channelUrl")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "channel_url")
     private Channel channel;
 }

@@ -54,8 +54,8 @@ public class ChannelController {
     }
 
     @GetMapping("/detail/ad/list")
-    public List<AdvideoDto> getChannelAdVideoList(@RequestParam("channelUrl") String ch_url, @PageableDefault(size = 5)Pageable pageable){
-        List<Advideo> advideoList = advideoService.getAdvideoList(channelService.getChannelDetail(ch_url), pageable);
+    public List<AdvideoDto> getChannelAdVideoList(@RequestParam("channelUrl") String ch_url){
+        List<Advideo> advideoList = advideoService.getAdvideoList(channelService.getChannelDetail(ch_url));
         log.info("list : {}", advideoList);
         return dtoConverter.toAdvideoDtoList(advideoList);
     }
