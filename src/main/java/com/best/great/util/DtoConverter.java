@@ -23,7 +23,7 @@ public class DtoConverter {
     }
 
     public AdvideoDto toAdvideoDto(Advideo advideo){
-        return new AdvideoDto(advideo.getId(), advideo.getAdUrl(), advideo.getChannel().getChannelUrl(), advideo.getName(), advideo.getUpday(), advideo.getCategory(), advideo.getLikecnt(), advideo.getDislike(), advideo.getRatio(), advideo.getClick(), advideo.getComment(), advideo.getHashtag(), advideo.getDescript(), advideo.getForeign());
+        return new AdvideoDto(advideo.getId(), advideo.getAdUrl(), advideo.getChannel().getChannelUrl(), advideo.getName(), advideo.getUpday(), advideo.getCategory(), advideo.getLikeCount(), advideo.getDislike(), advideo.getRatio(), advideo.getClick(), advideo.getComment(), advideo.getHashtag(), advideo.getDescription(), advideo.getForeign());
     }
 
     public List<AdvideoDto> toAdvideoDtoList(List<Advideo> advideoList){

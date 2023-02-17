@@ -32,7 +32,7 @@ public class Channel {
     private Double adavgview;
     private int adcount;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Advideo> advideoList = new ArrayList<>();
 
 }
