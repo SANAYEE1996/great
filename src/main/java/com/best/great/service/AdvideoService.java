@@ -5,10 +5,9 @@ import com.best.great.entity.Channel;
 import com.best.great.repository.AdvideoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -26,7 +25,11 @@ public class AdvideoService {
     public List<Advideo> getAdvideoList(Channel targetChannel){
         log.info("찾으려는 채널 주인 URL : {}",targetChannel.getChannelUrl());
         log.info("찾으려는 채널 주인 이름 : {}",targetChannel.getCh_name());
-        return advideoRepository.findAllByChannel(targetChannel);
+        List<Advideo> advideoList = advideoRepository.findAllByChannel(targetChannel);
+        log.info(",,, {}",advideoList);
+        log.info(",,, {}",advideoList.size());
+        log.info(",,, {}",advideoList.isEmpty());
+        return advideoList;
     }
 
     public Advideo getDetailAdvideo(String ad_url){

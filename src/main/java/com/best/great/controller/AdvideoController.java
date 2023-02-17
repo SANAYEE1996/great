@@ -25,8 +25,8 @@ public class AdvideoController {
     }
 
     @GetMapping("/comment")
-    public String getAdvideoComment(@RequestParam("ad_url") Long id){
-        return advideoCommentService.getComment(id);
+    public String getAdvideoComment(@RequestParam("id") String id){
+        return advideoCommentService.getComment(Long.parseLong(id));
     }
 
     @GetMapping("/info")
