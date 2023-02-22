@@ -2,8 +2,6 @@ package com.best.great.controller;
 
 import com.best.great.dto.AdvideoDto;
 import com.best.great.dto.ChannelDto;
-import com.best.great.entity.Advideo;
-import com.best.great.entity.Channel;
 import com.best.great.service.AdvideoService;
 import com.best.great.service.ChannelService;
 import com.best.great.service.CompareService;
@@ -41,28 +39,21 @@ public class ChannelController {
 
     @GetMapping("/list")
     public List<ChannelDto> list(@PageableDefault(size = 10)Pageable pageable){
-        //int startPage = Math.max(1,channels.getPageable().getPageNumber()-10);
-        //int endPage = Math.min(channels.getTotalPages(),channels.getPageable().getPageNumber()+10);
-        List<Channel> channelList = channelService.getChannelList(pageable).toList();
-        return dtoConverter.toChannelDtoList(channelList);
+        return dtoConverter.toChannelDtoList(channelService.getChannelList(pageable).toList());
     }
 
     @GetMapping("/detail/info")
     public ChannelDto getChanneldetailInfo(@RequestParam("channelUrl") String ch_url){
-        Channel channel = channelService.getChannelDetail(ch_url);
-        return dtoConverter.toChannelDto(channel);
+        return dtoConverter.toChannelDto(channelService.getChannelDetail(ch_url));
     }
 
     @GetMapping("/detail/ad/list")
     public List<AdvideoDto> getChannelAdVideoList(@RequestParam("channelUrl") String ch_url){
-        List<Advideo> advideoList = advideoService.getAdvideoList(channelService.getChannelDetail(ch_url));
-        log.info("list : {}", advideoList);
-        return dtoConverter.toAdvideoDtoList(advideoList);
+        return dtoConverter.toAdvideoDtoList(advideoService.getAdvideoList(channelService.getChannelDetail(ch_url)));
     }
 
     @PostMapping("/search")
     public List<ChannelDto> filterPage(@RequestParam("keyword") String initial_sound){
-        List<Channel> channelList = compareService.getSearchResult(initial_sound);
-        return dtoConverter.toChannelDtoList(channelList);
+        return dtoConverter.toChannelDtoList(compareService.getSearchResult(initial_sound));
     }
 }
