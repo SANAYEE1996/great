@@ -1,50 +1,50 @@
 package com.best.great.controller;
 
+
+import com.best.great.dto.ChannelDto;
+import com.best.great.entity.Channel;
 import com.best.great.service.ChannelService;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.Rollback;
 
-import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
-@WebAppConfiguration
-@ContextConfiguration
+@Rollback
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ChannelControllerTest {
 
-    @InjectMocks
-    public ChannelController channelController;
+    @LocalServerPort
+    private int port;
 
-    @Mock
-    ChannelService channelService;
+    @Autowired
+    private TestRestTemplate restTemplate;
 
-    private MockMvc mockMvc;
-
-    @BeforeEach
-    public void createController(){
-        MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(channelController).build();
-    }
+    @Autowired
+    private ChannelService channelService;
 
     @Test
+    @DisplayName("채널 상세정보 잘 가져오는지 테스트")
     public void getChannelDetailInfoTest() throws Exception{
         String channelUrl = "UCBkyj16n2snkRg1BAzpovXQ";
+        String url = "http:localhost:"+port+"/channel/detail/info";
 
-        RequestBuilder reqBuilder = MockMvcRequestBuilders.get("/channel/detail/info?channelUrl="+channelUrl).contentType(MediaType.APPLICATION_JSON);
-        mockMvc.perform(reqBuilder).andExpect(status().isOk()).andDo(print());
+        ChannelDto channelDto = new ChannelDto(0L,channelUrl,0,"",0,"",0.0,"","","",0,0,"","",0,0.0,0);
 
-        verify(channelService).getChannelDetail(channelUrl);
+        ResponseEntity<Long> response = restTemplate.postForEntity(url, channelDto, Long.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+        //Channel channel = channelService.getChannelDetail(channelUrl);
+
+        System.out.println(response.getBody());
 
     }
 }

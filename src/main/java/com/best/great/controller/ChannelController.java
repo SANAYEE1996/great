@@ -42,9 +42,9 @@ public class ChannelController {
         return dtoConverter.toChannelDtoList(channelService.getChannelList(pageable).toList());
     }
 
-    @GetMapping("/detail/info")
-    public ChannelDto getChanneldetailInfo(@RequestParam("channelUrl") String ch_url){
-        return dtoConverter.toChannelDto(channelService.getChannelDetail(ch_url));
+    @PostMapping("/detail/info")
+    public ChannelDto getChanneldetailInfo(@RequestBody ChannelDto channelDto){
+        return dtoConverter.toChannelDto(channelService.getChannelDetail(channelDto.getChannelUrl()));
     }
 
     @GetMapping("/detail/ad/list")
