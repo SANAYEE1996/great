@@ -34,11 +34,11 @@ public class ChannelControllerTest {
     @DisplayName("채널 상세정보 잘 가져오는지 테스트")
     public void getChannelDetailInfoTest() throws Exception{
         String channelUrl = "UCBkyj16n2snkRg1BAzpovXQ";
-        String url = "http:localhost:"+port+"/channel/detail/info";
+        String url = "http://localhost:"+port+"/channel/detail/info";
 
         ChannelDto channelDto = new ChannelDto(0L,channelUrl,0,"",0,"",0.0,"","","",0,0,"","",0,0.0,0);
 
-        ResponseEntity<Long> response = restTemplate.postForEntity(url, channelDto, Long.class);
+        ResponseEntity<Object> response = restTemplate.postForEntity(url, channelDto, Object.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
