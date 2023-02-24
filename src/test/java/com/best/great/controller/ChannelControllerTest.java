@@ -2,7 +2,6 @@ package com.best.great.controller;
 
 
 import com.best.great.dto.ChannelDto;
-import com.best.great.entity.Channel;
 import com.best.great.service.ChannelService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,7 +43,7 @@ public class ChannelControllerTest {
 
         //Channel channel = channelService.getChannelDetail(channelUrl);
 
-        System.out.println(response.getBody());
+        System.out.println(response);
 
     }
 }
