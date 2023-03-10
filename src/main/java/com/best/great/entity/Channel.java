@@ -10,10 +10,11 @@ import java.util.List;
 @Getter
 public class Channel {
     @Id
+    @Column(name = "channel_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "channel_url")
+    @Column(name = "channel_url" , unique=true)
     private String channelUrl;
 
     private int monthView;
@@ -32,7 +33,29 @@ public class Channel {
     private Double adavgview;
     private int adcount;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "channel")
     private List<Advideo> advideoList = new ArrayList<>();
 
+    public Channel(String channelUrl, int monthView, String ch_name, int sub, String regdate, Double totview, String category, String contact, String fan, int insta, int upload, String img, String tag, int clust, Double adavgview, int adcount) {
+        this.channelUrl = channelUrl;
+        this.monthView = monthView;
+        this.ch_name = ch_name;
+        this.sub = sub;
+        this.regdate = regdate;
+        this.totview = totview;
+        this.category = category;
+        this.contact = contact;
+        this.fan = fan;
+        this.insta = insta;
+        this.upload = upload;
+        this.img = img;
+        this.tag = tag;
+        this.clust = clust;
+        this.adavgview = adavgview;
+        this.adcount = adcount;
+    }
+
+    public Channel() {
+
+    }
 }

@@ -24,7 +24,7 @@ public class AdvideoService {
     public List<Advideo> getAdvideoList(Channel targetChannel){
         log.info("찾으려는 채널 주인 URL : {}",targetChannel.getChannelUrl());
         log.info("찾으려는 채널 주인 이름 : {}",targetChannel.getCh_name());
-        List<Advideo> advideoList = advideoRepository.getAdvideosByChannel(targetChannel);
+        List<Advideo> advideoList = advideoRepository.getAllAdvideos(targetChannel.getChannelUrl());
         log.info(",,, {}",advideoList);
         log.info(",,, {}",advideoList.size());
         log.info(",,, {}",advideoList.isEmpty());

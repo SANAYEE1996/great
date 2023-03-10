@@ -41,7 +41,28 @@ public class Advideo {
     @OneToOne(mappedBy = "advideo")
     private AdvideoComment advideoComment;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "channel_url")
     private Channel channel;
+
+    public Advideo(String adUrl, String name, String upday, String category, int likeCount, int dislike, double ratio, int click, int comment, String hashtag, String description, Double foreign, AdvideoComment advideoComment, Channel channel) {
+        this.adUrl = adUrl;
+        this.name = name;
+        this.upday = upday;
+        this.category = category;
+        this.likeCount = likeCount;
+        this.dislike = dislike;
+        this.ratio = ratio;
+        this.click = click;
+        this.comment = comment;
+        this.hashtag = hashtag;
+        this.description = description;
+        this.foreign = foreign;
+        this.advideoComment = advideoComment;
+        this.channel = channel;
+    }
+
+    public Advideo() {
+
+    }
 }
