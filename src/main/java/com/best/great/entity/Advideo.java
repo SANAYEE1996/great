@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Getter
 public class Advideo {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

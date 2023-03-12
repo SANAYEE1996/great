@@ -3,18 +3,15 @@ package com.best.great.entity;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "channel")
 @Getter
-public class Channel {
+public class Channel{
     @Id
-    @Column(name = "channel_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "channel_url" , unique=true)
+    @Column(name = "channel_url")
     private String channelUrl;
 
     private int monthView;

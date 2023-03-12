@@ -4,7 +4,6 @@ import lombok.Getter;
 
 @Getter
 public class ChannelDto {
-    private final Long id;
 
     private final String channelUrl;
 
@@ -26,8 +25,7 @@ public class ChannelDto {
     private final Double adavgview;
     private final int adcount;
 
-    public ChannelDto(Long id, String channelUrl, int monthView, String chName, int sub, String regdate, Double totview, String category, String contact, String fan, int insta, int upload, String img, String tag, int clust, Double adavgview, int adcount) {
-        this.id = id;
+    public ChannelDto(String channelUrl, int monthView, String chName, int sub, String regdate, Double totview, String category, String contact, String fan, int insta, int upload, String img, String tag, int clust, Double adavgview, int adcount) {
         this.channelUrl = channelUrl;
         this.monthView = monthView;
         ch_name = chName;

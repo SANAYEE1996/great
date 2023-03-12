@@ -35,7 +35,7 @@ public class ChannelControllerTest {
         String channelUrl = "UCBkyj16n2snkRg1BAzpovXQ";
         String url = "http://localhost:"+port+"/channel/detail/info";
 
-        ChannelDto channelDto = new ChannelDto(0L,channelUrl,0,"",0,"",0.0,"","","",0,0,"","",0,0.0,0);
+        ChannelDto channelDto = new ChannelDto(channelUrl,0,"",0,"",0.0,"","","",0,0,"","",0,0.0,0);
 
         ResponseEntity<Object> response = restTemplate.postForEntity(url, channelDto, Object.class);
 
