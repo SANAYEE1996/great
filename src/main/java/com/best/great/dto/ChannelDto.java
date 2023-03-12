@@ -28,7 +28,7 @@ public class ChannelDto {
     public ChannelDto(String channelUrl, int monthView, String chName, int sub, String regdate, Double totview, String category, String contact, String fan, int insta, int upload, String img, String tag, int clust, Double adavgview, int adcount) {
         this.channelUrl = channelUrl;
         this.monthView = monthView;
-        ch_name = chName;
+        this.ch_name = chName;
         this.sub = sub;
         this.regdate = regdate;
         this.totview = totview;

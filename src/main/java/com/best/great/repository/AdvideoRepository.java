@@ -3,7 +3,6 @@ package com.best.great.repository;
 import com.best.great.entity.Advideo;
 import com.best.great.entity.Channel;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

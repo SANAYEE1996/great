@@ -2,7 +2,10 @@ package com.best.great.controller;
 
 
 import com.best.great.dto.ChannelDto;
+import com.best.great.entity.Channel;
 import com.best.great.service.ChannelService;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +40,14 @@ public class ChannelControllerTest {
 
         ChannelDto channelDto = new ChannelDto(channelUrl,0,"",0,"",0.0,"","","",0,0,"","",0,0.0,0);
 
-        ResponseEntity<Object> response = restTemplate.postForEntity(url, channelDto, Object.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(url, channelDto, String.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Channel channel = channelService.getChannelDetail(channelUrl);
 
-        //Channel channel = channelService.getChannelDetail(channelUrl);
+        JSONObject jsonObject = new JSONObject(response.getBody());
 
-        System.out.println(response);
+        assertThat(jsonObject.getString("channelUrl")).isEqualTo(channel.getChannelUrl());
 
     }
 }
