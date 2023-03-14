@@ -48,7 +48,7 @@ public class ChannelController {
     }
 
     @GetMapping("/detail/ad/list")
-    public List<AdvideoDto> getChannelAdVideoList(@RequestParam("channelUrl") String ch_url){
+    public List<AdvideoDto> getChannelAdVideoList(@RequestParam("url") String ch_url){
         return dtoConverter.toAdvideoDtoList(advideoService.getAdvideoList(channelService.getChannelDetail(ch_url)));
     }
 

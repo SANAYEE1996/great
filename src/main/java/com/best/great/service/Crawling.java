@@ -25,7 +25,6 @@ public class Crawling {
         String url = "https://www.google.com/search?q=" + keyword + "&oq=" + keyword;
         log.info("받은 구글 검색 url : {}", url);
         putSearchResultToList(keyword,url,list);
-        printListLogToCheck(list);
         return list;
     }
 
@@ -65,11 +64,5 @@ public class Crawling {
             }
         }
         return count;
-    }
-
-    private void printListLogToCheck(List<SearchResult> list){
-        for(SearchResult i : list){
-            log.info("result : {}", i);
-        }
     }
 }
