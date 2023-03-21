@@ -26,7 +26,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @Rollback
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ChannelControllerTest {
+public class ChannelControllerTestBySpringBootTest {
 
     @LocalServerPort
     private int port;
