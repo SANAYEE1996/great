@@ -2,7 +2,6 @@ package com.best.great.controller;
 
 import com.best.great.entity.Board;
 import com.best.great.service.BoardService;
-import com.best.great.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -20,11 +19,8 @@ public class BoardController {
     private final BoardService boardService;
 
 
-    private final UserService userService;
-
-    public BoardController(BoardService boardService, UserService userService) {
+    public BoardController(BoardService boardService) {
         this.boardService = boardService;
-        this.userService = userService;
     }
 
 
