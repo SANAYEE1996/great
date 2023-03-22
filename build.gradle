@@ -73,11 +73,14 @@ dependencies {
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
 	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
 
-	asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor:{project-version}'
-	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc:{project-version}'
+	asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 
 }
 
+tasks.named('test') {
+	useJUnitPlatform()
+}
 
 def querydslDir = "$buildDir/generated/querydsl" as Object
 
