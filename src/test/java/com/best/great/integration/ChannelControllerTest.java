@@ -1,4 +1,4 @@
-package com.best.great.controller;
+package com.best.great.integration;
 
 
 import com.best.great.dto.AdvideoDto;
@@ -26,7 +26,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @Rollback
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ChannelControllerTestBySpringBootTest {
+public class ChannelControllerTest {
 
     @LocalServerPort
     private int port;

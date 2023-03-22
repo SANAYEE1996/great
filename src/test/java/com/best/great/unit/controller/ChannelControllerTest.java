@@ -1,5 +1,6 @@
-package com.best.great.controller;
+package com.best.great.unit.controller;
 
+import com.best.great.controller.ChannelController;
 import com.best.great.dto.ChannelDto;
 import com.best.great.service.AdvideoService;
 import com.best.great.service.ChannelService;

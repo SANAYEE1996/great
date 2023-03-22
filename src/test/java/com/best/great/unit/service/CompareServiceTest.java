@@ -1,5 +1,6 @@
-package com.best.great.service;
+package com.best.great.unit.service;
 
+import com.best.great.service.CompareService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
