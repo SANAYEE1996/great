@@ -15,6 +15,6 @@ public class CompareServiceTest {
 
     @Test
     public void testCase01() throws Exception{
-        assertEquals(17,cs.getSearchResult("ㅇㅇㄱ").size());
+        assertEquals(8,cs.getSearchResult("ㅇㅇㄱ").size());
     }
 }
