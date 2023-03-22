@@ -11,6 +11,11 @@ plugins {
 	id 'war'
 	id "io.freefair.lombok" version "5.3.0"
 	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+	id "org.asciidoctor.jvm.convert" version "3.3.2"
+}
+
+configurations {
+	asciidoctorExt
 }
 
 group = 'com.best'
@@ -44,10 +49,6 @@ dependencies {
 	/*mariadb*/
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:3.0.6'
 
-	/*security*/
-//	implementation 'org.springframework.boot:spring-boot-starter-security'
-//	implementation 'org.springframework.security:spring-security-test'
-
 	/*login logout role show hide*/
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 
@@ -71,6 +72,9 @@ dependencies {
 	/*querydsl dependencies*/
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
 	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+
+	asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor:{project-version}'
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc:{project-version}'
 
 }
 
@@ -98,4 +102,27 @@ configurations {
 		extendsFrom annotationProcessor
 	}
 	querydsl.extendsFrom compileClasspath
+}
+
+ext {
+	snippetsDir = file('build/generated-snippets')
+}
+
+test {
+	outputs.dir snippetsDir
+}
+
+asciidoctor {
+	inputs.dir snippetsDir
+	configurations 'asciidoctorExt'
+
+	dependsOn test
+}
+
+bootJar {
+	dependsOn asciidoctor
+
+	from ("${asciidoctor.outputDir}/html5") {
+		into 'static/docs'
+	}
 }
