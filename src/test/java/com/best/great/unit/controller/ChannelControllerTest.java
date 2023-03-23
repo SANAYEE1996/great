@@ -13,6 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -59,8 +61,19 @@ class ChannelControllerTest {
 
     }
 
+    @DisplayName("채널 광고 정보 테스트")
     @Test
-    void getChannelAdVideoList() {
+    void getChannelAdVideoList() throws Exception{
+        String channelUrl = "UCBkyj16n2snkRg1BAzpovXQ";
+
+        MultiValueMap<String, String> param = new LinkedMultiValueMap<>();
+        param.add("url",channelUrl);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/channel/detail/ad/list")
+                .params(param)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andDo(MockMvcResultHandlers.print());
     }
 
     @Test
