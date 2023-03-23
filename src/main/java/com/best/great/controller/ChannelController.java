@@ -2,6 +2,7 @@ package com.best.great.controller;
 
 import com.best.great.dto.AdvideoDto;
 import com.best.great.dto.ChannelDto;
+import com.best.great.entity.Channel;
 import com.best.great.service.AdvideoService;
 import com.best.great.service.ChannelService;
 import com.best.great.service.CompareService;

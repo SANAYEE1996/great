@@ -8,8 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-
 
 @Service
 public class ChannelService {
@@ -29,7 +27,6 @@ public class ChannelService {
     }
 
     public Channel getChannelDetail(String url){
-
         return channelRepository.getChannelByChannelUrl(url);
     }
 
