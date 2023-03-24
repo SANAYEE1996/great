@@ -1,5 +1,6 @@
 package com.best.great.repository.support;
 
+import com.best.great.dto.ChannelFilterDto;
 import com.best.great.entity.Channel;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
@@ -19,7 +20,7 @@ public class ChannelRepositorySupport extends QuerydslRepositorySupport {
         this.queryFactory = queryFactory;
     }
 
-    public List<Channel> getFilterChannelList(){
+    public List<Channel> getFilterChannelList(ChannelFilterDto channelFilterDto){
         List<Channel> result = queryFactory
                             .select(channel)
                             .from(channel)
