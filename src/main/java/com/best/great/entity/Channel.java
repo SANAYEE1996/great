@@ -3,7 +3,6 @@ package com.best.great.entity;
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,12 +1,16 @@
 package com.best.great.service;
 
+import com.best.great.dto.ChannelFilterDto;
 import com.best.great.entity.Channel;
 import com.best.great.repository.ChannelRepository;
+import com.best.great.repository.support.ChannelRepositorySupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -16,9 +20,11 @@ public class ChannelService {
 
 
     private final ChannelRepository channelRepository;
+    private final ChannelRepositorySupport channelRepositorySupport;
 
-    public ChannelService(ChannelRepository channelRepository){
+    public ChannelService(ChannelRepository channelRepository, ChannelRepositorySupport channelRepositorySupport){
         this.channelRepository = channelRepository;
+        this.channelRepositorySupport = channelRepositorySupport;
     }
 
     public Page<Channel> getChannelList(Pageable pageable){
@@ -28,6 +34,10 @@ public class ChannelService {
 
     public Channel getChannelDetail(String url){
         return channelRepository.getChannelByChannelUrl(url);
+    }
+
+    public List<Channel> getChannelList(ChannelFilterDto channelFilterDto){
+        return channelRepositorySupport.getFilterChannelList(channelFilterDto);
     }
 
 

@@ -14,5 +14,11 @@ public class ChannelFilterDto {
 
     private int maxSubscribeCount;
 
-
+    public ChannelFilterDto(int minMonthView, int maxMonthView, String channelName, int minSubscribeCount, int maxSubscribeCount) {
+        this.minMonthView = minMonthView;
+        this.maxMonthView = maxMonthView;
+        this.channelName = channelName;
+        this.minSubscribeCount = minSubscribeCount;
+        this.maxSubscribeCount = maxSubscribeCount;
+    }
 }

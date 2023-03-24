@@ -2,6 +2,7 @@ package com.best.great.controller;
 
 import com.best.great.dto.AdvideoDto;
 import com.best.great.dto.ChannelDto;
+import com.best.great.dto.ChannelFilterDto;
 import com.best.great.entity.Channel;
 import com.best.great.service.AdvideoService;
 import com.best.great.service.ChannelService;
@@ -57,4 +58,10 @@ public class ChannelController {
     public List<ChannelDto> filterPage(@RequestParam("keyword") String initial_sound){
         return dtoConverter.toChannelDtoList(compareService.getSearchResult(initial_sound));
     }
+
+    @PostMapping("/filter")
+    public List<ChannelDto> filterPage(@RequestBody ChannelFilterDto channelFilterDto){
+        return dtoConverter.toChannelDtoList((channelService.getChannelList(channelFilterDto)));
+    }
 }
+
