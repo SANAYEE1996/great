@@ -1,6 +1,7 @@
 package com.best.great.unit.controller;
 
 import com.best.great.dto.ChannelDto;
+import com.best.great.dto.ChannelFilterDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -76,7 +77,23 @@ class ChannelControllerTest {
                 .andDo(MockMvcResultHandlers.print());
     }
 
+    @DisplayName("채널 필터 단위 테스트")
     @Test
-    void filterPage() {
+    void filterChannelTest() throws Exception {
+        int minMonthView = 0;
+        int maxMonthView = 10000000;
+        String channelName = "";
+        int minSubscribeCount = 0;
+        int maxSubscribeCount = 1000000;
+        ChannelFilterDto channelFilterDto = new ChannelFilterDto(minMonthView, maxMonthView, channelName, minSubscribeCount, maxSubscribeCount);
+
+        String content = objectMapper.writeValueAsString(channelFilterDto);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/channel/filter")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(content))
+                .andExpect(status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+
     }
 }
