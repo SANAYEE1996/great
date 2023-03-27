@@ -3,6 +3,7 @@ package com.best.great.integration;
 
 import com.best.great.dto.AdvideoDto;
 import com.best.great.dto.ChannelDto;
+import com.best.great.dto.ChannelFilterDto;
 import com.best.great.entity.Channel;
 import com.best.great.service.AdvideoService;
 import com.best.great.service.ChannelService;
@@ -79,6 +80,32 @@ public class ChannelControllerTest {
 
         for(int i = 0; i < jsonArray.length(); i++){
             assertThat(jsonArray.getJSONObject(i).getString("adUrl")).isEqualTo(advideoDtoList.get(i).getAdUrl());
+        }
+
+    }
+
+    @Test
+    @DisplayName("채널 필터 통합 테스트")
+    public void filterChannelTest() throws Exception{
+        String url = "http://localhost:"+port+"/channel/filter";
+
+        int minMonthView = 0;
+        int maxMonthView = 10000000;
+        String channelName = "";
+        int minSubscribeCount = 0;
+        int maxSubscribeCount = 1000000;
+        ChannelFilterDto channelFilterDto = new ChannelFilterDto(minMonthView, maxMonthView, channelName, minSubscribeCount, maxSubscribeCount);
+
+        ResponseEntity<String> response = restTemplate.postForEntity(url,channelFilterDto,String.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+        List<ChannelDto> channelDtoList = dtoConverter.toChannelDtoList((channelService.getChannelList(channelFilterDto)));
+
+        JSONArray jsonArray = new JSONArray(response.getBody());
+        assertThat(channelDtoList.size()).isEqualTo(jsonArray.length());
+        for(int i = 0; i < jsonArray.length(); i++){
+            assertThat(jsonArray.getJSONObject(i).getString("channelUrl")).isEqualTo(channelDtoList.get(i).getChannelUrl());
         }
 
     }
