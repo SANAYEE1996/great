@@ -2,7 +2,7 @@ package com.best.great.entity;
 
 import lombok.Getter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity(name = "adcomment")
 @Getter

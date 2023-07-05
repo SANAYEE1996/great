@@ -12,6 +12,7 @@ import java.util.List;
 
 import static com.best.great.entity.QChannel.channel;
 
+
 @Repository
 public class ChannelRepositorySupport extends QuerydslRepositorySupport {
 
