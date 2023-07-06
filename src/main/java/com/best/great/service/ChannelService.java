@@ -4,6 +4,7 @@ import com.best.great.dto.ChannelFilterDto;
 import com.best.great.entity.Channel;
 import com.best.great.repository.ChannelRepository;
 import com.best.great.repository.support.ChannelRepositorySupport;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,7 @@ import java.util.List;
 
 
 @Service
+@RequiredArgsConstructor
 public class ChannelService {
 
     private static final Logger log = LoggerFactory.getLogger(ChannelService.class);
@@ -21,11 +23,6 @@ public class ChannelService {
 
     private final ChannelRepository channelRepository;
     private final ChannelRepositorySupport channelRepositorySupport;
-
-    public ChannelService(ChannelRepository channelRepository, ChannelRepositorySupport channelRepositorySupport){
-        this.channelRepository = channelRepository;
-        this.channelRepositorySupport = channelRepositorySupport;
-    }
 
     public Page<Channel> getChannelList(Pageable pageable){
         log.info("현재 페이지 사이즈 : {} // 현재 페이지 넘버 : {}",pageable.getPageSize(),pageable.getPageNumber());

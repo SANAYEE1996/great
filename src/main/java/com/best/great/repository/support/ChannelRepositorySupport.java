@@ -14,7 +14,7 @@ import static com.best.great.entity.QChannel.channel;
 
 
 @Repository
-public class ChannelRepositorySupport extends QuerydslRepositorySupport {
+public class ChannelRepositorySupport extends QuerydslRepositorySupport{
 
     private final JPAQueryFactory queryFactory;
 
